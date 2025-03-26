@@ -5,7 +5,6 @@ async function getPhotographers() {
             throw new Error("Erreur lors du chargement du fichier JSON")
         }
         const data = await response.json()
-        console.log(data)
         return data.photographers
     } catch (error) {
         console.error("Erreur : ", error)
@@ -28,3 +27,4 @@ async function init() {
 }
 
 init()
+
