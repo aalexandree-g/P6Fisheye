@@ -1,50 +1,66 @@
-function photographerTemplate(data) {
+export function photographerTemplate(data, format) {
     const { name, id, city, country, tagline, price, portrait } = data
     const picture = `assets/photographers/${portrait}`
     const location = `Localisation : ${city}, ${country}`
     const slogan = `Slogan : ${tagline}`
     const cost = `Tarif : ${price}€ par jour`
 
+    const img = document.createElement("img")
+    img.setAttribute("src", picture)
+
+    const spanLocation = document.createElement("span")
+    spanLocation.textContent = `${city}, ${country}`
+    spanLocation.classList.add("location")
+    spanLocation.setAttribute("aria-label", location)
+
+    const spanTagline = document.createElement("span")
+    spanTagline.textContent = tagline
+    spanTagline.classList.add("slogan")
+    spanTagline.setAttribute("aria-label", slogan)
+
+    const spanPrice = document.createElement("span")
+    spanPrice.textContent = `${price}€/jour`
+    spanPrice.classList.add("cost")
+    spanPrice.setAttribute("aria-label", cost)
+
     function getUserCardDOM() {
-        const link = document.createElement("a")
-        link.setAttribute("href", `photographe.html?id=${id}`)
+        if (format === "profile") {
+            // photographer's profile
+            const h1 = document.createElement("h1")
+            h1.textContent = name
 
-        const img = document.createElement("img")
-        img.setAttribute("src", picture)
-        img.setAttribute("alt", `Photo de profil de ${name}`)
+            img.setAttribute("alt", name)
+            
+            const textContent = document.createElement("div")
+            textContent.classList.add("text_content")
+            textContent.appendChild(h1)
+            textContent.appendChild(spanLocation)
+            textContent.appendChild(spanTagline)
 
-        img.addEventListener("click", () => {
-            //console.log(`${name}, ${id}, ${city}, ${country}, ${tagline}, ${price}, ${portrait}`)
-        })
+            const profile = document.querySelector(".photographer_header")
+            profile.insertBefore(textContent, profile.firstChild)
+            profile.appendChild(img)
+            return profile
+        } else {
+            // photographer's card
+            const h2 = document.createElement("h2")
+            h2.textContent = name
 
-        link.appendChild(img)
-
-        const h2 = document.createElement("h2")
-        h2.textContent = name
-
-        const spanLocation = document.createElement("span")
-        spanLocation.textContent = `${city}, ${country}`
-        spanLocation.classList.add("location")
-        spanLocation.setAttribute("aria-label", location)
-
-        const spanTagline = document.createElement("span")
-        spanTagline.textContent = tagline
-        spanTagline.classList.add("slogan")
-        spanTagline.setAttribute("aria-label", slogan)
-
-        const spanPrice = document.createElement("span")
-        spanPrice.textContent = `${price}€/jour`
-        spanPrice.classList.add("cost")
-        spanPrice.setAttribute("aria-label", cost)
-
-        const article = document.createElement("article")
-        article.appendChild(link)
-        article.appendChild(h2)
-        article.appendChild(spanLocation)
-        article.appendChild(spanTagline)
-        article.appendChild(spanPrice)
-        return (article)
-    }
+            img.setAttribute("alt", "")
     
-    return { name, picture, getUserCardDOM }
+            const link = document.createElement("a")
+            link.setAttribute("href", `photographer.html?id=${id}`)
+            link.setAttribute("aria-label", name)
+            link.appendChild(img)
+            link.appendChild(h2)
+    
+            const article = document.createElement("article")
+            article.appendChild(link)
+            article.appendChild(spanLocation)
+            article.appendChild(spanTagline)
+            article.appendChild(spanPrice)
+            return article
+        }
+    }
+    return getUserCardDOM()
 }
