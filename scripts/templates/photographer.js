@@ -1,6 +1,6 @@
 export function photographerTemplate(data, format) {
     const { name, id, city, country, tagline, price, portrait } = data
-    const picture = `assets/photographers/${portrait}`
+    const picture = `./assets/photographers/${portrait}`
     const location = `Localisation : ${city}, ${country}`
     const slogan = `Slogan : ${tagline}`
     const cost = `Tarif : ${price}€ par jour`
@@ -23,7 +23,7 @@ export function photographerTemplate(data, format) {
     spanPrice.classList.add("cost")
     spanPrice.setAttribute("aria-label", cost)
 
-    function getUserCardDOM() {
+    function getUserDOM() {
         if (format === "profile") {
             // photographer's profile
             const h1 = document.createElement("h1")
@@ -56,5 +56,5 @@ export function photographerTemplate(data, format) {
             return article
         }
     }
-    return getUserCardDOM()
+    return getUserDOM()
 }

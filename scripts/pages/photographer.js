@@ -1,8 +1,9 @@
-import { getPhotographers } from "../utils/api.js"
-import { displayUserProfile } from "../functions/photographer.js"
+import { getPhotographers, getMedia } from "../utils/api.js"
+import { getPhotographerFromId, displayUserProfile, displayMedia } from "../functions/photographer.js"
 
-// get photographers' data from JSON file
 const photographers = await getPhotographers()
+const photographer = getPhotographerFromId(photographers)
+displayUserProfile(photographer)
 
-// display one photographer's profile
-displayUserProfile(photographers)
+const media = await getMedia()
+displayMedia(photographer, media)

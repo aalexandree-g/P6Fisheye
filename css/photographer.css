@@ -2,6 +2,12 @@
     display: none;
 }
 
+#main {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
 .photographer_header {
     display: flex;
     flex-direction: row;
@@ -53,6 +59,21 @@
     width: 200px;
     border-radius: 50%;
     object-fit: cover;
+}
+
+.media_section {
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    gap: 30px;
+    width: 100%;
+}
+
+.media_section img {
+    display: block;
+    height: 280px;
+    width: 280px;
+    object-fit: cover;
+    margin: auto;
 }
 
 .modal {
