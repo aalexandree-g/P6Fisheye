@@ -33,9 +33,7 @@ export function photographerTemplate(data, format) {
             
             const textContent = document.createElement("div")
             textContent.classList.add("text_content")
-            textContent.appendChild(h1)
-            textContent.appendChild(spanLocation)
-            textContent.appendChild(spanTagline)
+            textContent.append(h1, spanLocation, spanTagline)
 
             const profile = document.querySelector(".photographer_header")
             profile.insertBefore(textContent, profile.firstChild)
@@ -51,14 +49,10 @@ export function photographerTemplate(data, format) {
             const link = document.createElement("a")
             link.setAttribute("href", `photographer.html?id=${id}`)
             link.setAttribute("aria-label", name)
-            link.appendChild(img)
-            link.appendChild(h2)
+            link.append(img, h2)
     
             const article = document.createElement("article")
-            article.appendChild(link)
-            article.appendChild(spanLocation)
-            article.appendChild(spanTagline)
-            article.appendChild(spanPrice)
+            article.append(link, spanLocation, spanTagline, spanPrice)
             return article
         }
     }

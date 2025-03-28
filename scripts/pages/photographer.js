@@ -1,24 +1,8 @@
-import { getPhotographers } from "./index.js"
-import { photographerTemplate } from "../templates/photographer.js"
+import { getPhotographers } from "../utils/api.js"
+import { displayUserProfile } from "../functions/photographer.js"
 
-// get id from URL
-const params = new URLSearchParams(window.location.search)
-const idPhotographer = parseInt(params.get("id"))
+// get photographers' data from JSON file
+const photographers = await getPhotographers()
 
-// display photographer's profile
-function displayUserProfile(photographers, idUrl) {
-    const photographer = photographers.find(p => p.id === idUrl)
-    if (!photographer) {
-        console.error("Photographe non trouvé")
-        return
-    } else {
-        photographerTemplate(photographer, "profile")
-    }
-}
-
-async function init() {
-    const photographers = await getPhotographers()
-    displayUserProfile(photographers, idPhotographer)
-}
-
-init()
+// display one photographer's profile
+displayUserProfile(photographers)
