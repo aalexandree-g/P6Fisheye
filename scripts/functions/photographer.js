@@ -1,4 +1,5 @@
 import { photographerTemplate } from "../templates/photographer.js"
+import { getMedia } from "../utils/api.js"
 
 // get the right photographer with id in URL
 export function getPhotographerFromId(photographers) {
@@ -33,6 +34,4 @@ export function displayMedia(photographer, media) {
         }
     })
     main.appendChild(mediaSection)
-    
-    
 }
