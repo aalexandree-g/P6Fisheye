@@ -1,20 +1,14 @@
-/*import { getPhotographers } from "../utils/api.js"
-import { displayUserCards } from "../functions/index.js"
+import PhotographersApi from "../utils/PhotographersApi.js"
+import PhotographerTemplate from "../templates/PhotographerTemplate.js"
 
-const photographers = await getPhotographers()
-displayUserCards(photographers)*/
-
-
-class App {
+class IndexApp {
     constructor() {
         this.$section = document.querySelector(".photographer_section")
-        this.photographersApi = new PhotographersApi("./data/photographers.json")
+        this.api = new PhotographersApi("./data/photographers.json")
     }
 
     async main() {
-        const allPhotographers = await this.photographersApi.getPhotographers()
-        const photographers = allPhotographers.map(photographer => new Photographer(photographer))
-
+        const photographers = await this.api.getPhotographers()
         photographers.forEach(photographer => {
             const template = new PhotographerTemplate(photographer)
             this.$section.appendChild(
@@ -24,5 +18,5 @@ class App {
     }
 }
 
-const app = new App()
-app.main()
+const indexApp = new IndexApp()
+indexApp.main()

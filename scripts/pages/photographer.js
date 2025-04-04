@@ -1,36 +1,31 @@
-/*import { getPhotographers, getMedia } from "../utils/api.js"
-import { getPhotographerFromId, displayUserProfile, displayMedia } from "../functions/photographer.js"
+import PhotographersApi from "../utils/PhotographersApi.js"
+import PhotographerTemplate from "../templates/PhotographerTemplate.js"
 
-const photographers = await getPhotographers()
-const photographer = getPhotographerFromId(photographers)
-displayUserProfile(photographer)
-
-const media = await getMedia()
-displayMedia(photographer,media)*/
-
-
-
-
-class App {
+class PhotographerApp {
     constructor() {
         this.$main = document.getElementById("main")
-        this.photographersApi = new PhotographersApi("./data/photographers.json")
+        this.api = new PhotographersApi("./data/photographers.json")
     }
 
     async main() {
-        const allPhotographers = await this.photographersApi.getPhotographers()
-        const allMedia = await this.photographersApi.getMedia()
+        // get id from url
+        const params = new URLSearchParams(window.location.search)
+        const photographerId = parseInt(params.get("id"))
 
-        const photographers = allPhotographers.map(photographer => new Photographer(photographer))
+        // find photographer with this id
+        const photographers = await this.api.getPhotographers()
+        const photographer = photographers.find(photographer => photographer.id === photographerId)
 
-        photographers.forEach(photographer => {
-            const template = new PhotographerTemplate(photographer)
-            this.$main.appendChild(
-                template.createPhotographerProfile()
-            )
-        })
+        // create photographer's profile
+        const template = new PhotographerTemplate(photographer)
+        this.$main.appendChild(
+            template.createPhotographerProfile()
+        )
+
+
+        const allMedia = await this.api.getMedia()
     }
 }
 
-const app = new App()
-app.main()
+const photographerApp = new PhotographerApp()
+photographerApp.main()
