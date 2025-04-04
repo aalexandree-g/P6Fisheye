@@ -5,6 +5,7 @@ export default class PhotographerTemplate {
 
     createPhotographerCard() {
         const $card = document.createElement("article")
+        $card.classList.add("photographer_card")
         const photographerCard = `
             <a href="photographer.html?id=${this._photographer.id}" aria-label="${this._photographer.name}">
                 <img src="./assets/photographers/${this._photographer.portrait}" alt="">
@@ -25,8 +26,7 @@ export default class PhotographerTemplate {
     }
 
     createPhotographerProfile() {
-        const $profile = document.createElement("div")
-        $profile.classList.add("photographer_header")
+        const $profile = document.querySelector(".photographer_header")
         const photographerProfile = `
             <div class="text_content">
                 <h1>${this._photographer.name}</h1>

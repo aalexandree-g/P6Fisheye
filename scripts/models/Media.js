@@ -1,4 +1,4 @@
-class Media {
+export default class Media {
     constructor(media) {
         this._id = media.id
         this._photographerId = media.photographerId
@@ -8,7 +8,7 @@ class Media {
         this._price = media.price
     }
 
-    get id() { return thius._id }
+    get id() { return this._id }
 
     get photographerId() { return this._photographerId }
 
@@ -19,30 +19,4 @@ class Media {
     get date() { return this._date }
 
     get price() { return this._price }
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-class Photo extends Media {
-    constructor(media) {
-        super(media)
-        this._image = media.image
-    }
-}
-
-class Video extends Media {
-    constructor(media) {
-        super(media)
-        this._video = media.video
-    }
 }
