@@ -19,4 +19,13 @@ export default class Media {
     get date() { return this._date }
 
     get price() { return this._price }
+
+    createEncart(photographer) {
+        const $encart_likes = document.createElement("div")
+        $encart_likes.classList.add("encart_likes")
+        const encart_likes = `
+            ${this._likes}
+            <i class="fa-solid fa-heart"></i>
+        `
+    }
 }

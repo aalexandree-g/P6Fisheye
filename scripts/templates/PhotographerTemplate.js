@@ -25,9 +25,9 @@ export default class PhotographerTemplate {
         return $card
     }
 
-    createPhotographerProfile() {
-        const $profile = document.querySelector(".photographer_header")
-        const photographerProfile = `
+    createPhotographerHeader() {
+        const $header = document.querySelector(".photographer_header")
+        const photographerHeader = `
             <div class="text_content">
                 <h1>${this._photographer.name}</h1>
                 <span class="location" aria-label="Localisation : ${this._photographer.location}">
@@ -40,7 +40,7 @@ export default class PhotographerTemplate {
             <button class="contact_button" onclick="displayModal()">Contactez-moi</button>
             <img src="./assets/photographers/${this._photographer.portrait}" alt="${this._photographer.name}">
         `
-        $profile.innerHTML = photographerProfile
-        return $profile
+        $header.innerHTML = photographerHeader
+        return $header
     }
 }

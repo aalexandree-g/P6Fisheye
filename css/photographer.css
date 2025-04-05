@@ -31,7 +31,7 @@
     margin: -10px 0px;
 }
 
-.photographer_header .text_content .location {
+.photographer_header .text_content .location, .media_title {
     color: #901C1C;
     font-size: 20px;
 }
@@ -76,9 +76,25 @@
     margin: auto;
 }
 
+.media_element {
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+}
+
 .media_infos {
     display: flex;
     justify-content: space-between;
+    align-items: flex-start;
+}
+
+.likes_section {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 5px;
+    color: #901C1C;
 }
 
 .modal {

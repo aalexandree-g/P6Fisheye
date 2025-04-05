@@ -1,4 +1,5 @@
 import PhotographersApi from "../utils/PhotographersApi.js"
+import PhotographerService from "../services/PhotographerService.js"
 import Photo from "../models/Photo.js"
 import Video from "../models/Video.js"
 import MediaFactory from "../factories/MediaFactory.js"
@@ -6,32 +7,28 @@ import PhotographerTemplate from "../templates/PhotographerTemplate.js"
 
 class PhotographerApp {
     constructor() {
-        this.$header = document.querySelector(".photographer_header")
-        this.$section = document.querySelector(".media_section")
+        this.$encart = document.querySelector(".encart")
         this.api = new PhotographersApi("./data/photographers.json")
     }
 
     async main() {
-        // get id from url
-        const params = new URLSearchParams(window.location.search)
-        const photographerId = parseInt(params.get("id"))
 
-        // find photographer with this id
-        const photographers = await this.api.getPhotographers()
-        const photographer = photographers.find(photographer => photographer.id === photographerId)
-
-        // create photographer's profile
-        const template = new PhotographerTemplate(photographer)
-        template.createPhotographerProfile()
-
-        const allMediaData = await this.api.getMedia()
-        const photographerMedia = allMediaData.filter(media => media.photographerId === photographerId)
-        const allMedia = photographerMedia.map(media => new MediaFactory(media))
+        // get photographer from URL and his/her media
+        const service = new PhotographerService(this.api)
+        const photographer = await service.getPhotographerFromUrl()
+        const media = await service.getMediaForPhotographer(photographer)
         
-        allMedia.forEach(media => {
-            const mediaElement = media.createMedia()
-            this.$section.appendChild(mediaElement)
-        })
+        // display profile
+        const template = new PhotographerTemplate(photographer)
+        template.createPhotographerHeader()
+
+        // display media
+        service.displayPhotographerMedia(media)
+
+
+        // afficher l'encart
+
+        
     }
 }
 

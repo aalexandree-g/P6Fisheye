@@ -1,0 +1,5 @@
+class Encart {
+    constructor(photographerMedia) {
+
+    }
+}
