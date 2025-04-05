@@ -1,12 +1,12 @@
-import Photo from "../models/Photo.js"
-import Video from "../models/Video.js"
+import PhotoTemplate from "../templates/PhotoTemplate.js"
+import VideoTemplate from "../templates/VideoTemplate.js"
 
 export default class MediaFactory {
     constructor(media) {
         if (media.image) {
-            return new Photo(media)
+            return new PhotoTemplate(media)
         } else if (media.video) {
-            return new Video(media)
+            return new VideoTemplate(media)
         } else {
             throw "Unknow format type"
         }

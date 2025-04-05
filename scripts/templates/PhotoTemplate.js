@@ -1,6 +1,6 @@
-import Media from "./Media.js"
+import Media from "../models/Media.js"
 
-export default class Photo extends Media {
+export default class PhotoTemplate extends Media {
     constructor(media) {
         super(media)
         this._image = media.image
@@ -17,7 +17,7 @@ export default class Photo extends Media {
                 <span class="media_title">${this._title}</span>
                 <div class="likes_section">
                     ${this._likes}
-                    <i class="fa-solid fa-heart"></i>
+                    <i class="fa-solid fa-heart" aria-label="likes"></i>
                 </div>
             </div>
             `

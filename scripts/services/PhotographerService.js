@@ -1,4 +1,5 @@
 import MediaFactory from "../factories/MediaFactory.js"
+import PhotographerTemplate from "../templates/PhotographerTemplate.js"
 
 export default class PhotographerService {
     constructor(api) {
@@ -20,11 +21,22 @@ export default class PhotographerService {
         return photographerMedia.map(media => new MediaFactory(media))
     }
 
+    displayPhotographersCards(photographers) {
+        const $section = document.querySelector(".photographer_section")
+        photographers.forEach(photographer => {
+            const card = new PhotographerTemplate(photographer)
+            $section.appendChild(
+                card.createPhotographerCard()
+            )
+        })
+        return $section
+    }
+
     displayPhotographerMedia(mediaList) {
-        this.$section = document.querySelector(".media_section")
+        const $section = document.querySelector(".media_section")
         mediaList.forEach(media => {
             const mediaElement = media.createMedia()
-            this.$section.appendChild(mediaElement)
+            $section.appendChild(mediaElement)
         })
     }
 }
