@@ -39,4 +39,12 @@ export default class PhotographerService {
             $section.appendChild(mediaElement)
         })
     }
+
+    getTotalLikes(photographerMedia) {
+        let totalLikes = 0
+        for (let i = 0; i < photographerMedia.length; i++) {
+            totalLikes += photographerMedia[i].likes
+        }
+        return totalLikes
+    }
 }

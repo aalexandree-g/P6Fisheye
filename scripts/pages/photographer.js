@@ -1,6 +1,7 @@
 import PhotographersApi from "../utils/PhotographersApi.js"
 import PhotographerService from "../services/PhotographerService.js"
 import PhotographerTemplate from "../templates/PhotographerTemplate.js"
+import EncartTemplate from "../templates/EncartTemplate.js"
 
 class PhotographerApp {
     constructor() {
@@ -12,16 +13,16 @@ class PhotographerApp {
         // get photographer and media
         const photographer = await this.service.getPhotographerFromUrl()
         const media = await this.service.getMediaForPhotographer(photographer)
-        // display photographer
+
+        // display photographer and media
         const header = new PhotographerTemplate(photographer)
         header.createPhotographerHeader()
-        // display media
         this.service.displayPhotographerMedia(media)
 
-
-        // afficher l'encart
-
-        
+        // display panel
+        const likes = this.service.getTotalLikes(media)
+        const panel = new EncartTemplate(photographer)
+        panel.createPanel(likes)
     }
 }
 

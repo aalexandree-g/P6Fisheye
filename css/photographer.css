@@ -102,14 +102,22 @@
 .panel {
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+    justify-content: space-around;
+    gap: 50px;
     position: fixed;
     bottom: 0;
     right: 40px;
-    width: 250px;
-    padding: 15px 30px;
+    padding: 20px 30px;
     font-size: 20px;
+    border-top-left-radius: 7px;
+    border-top-right-radius: 7px;
     background-color: #DB8876;
+}
+
+.panel .likes {
+    display: flex;
+    align-items: center;
+    gap: 10px;
 }
 
 .modal {

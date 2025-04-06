@@ -1,5 +1,0 @@
-class Encart {
-    constructor(photographer) {
-
-    }
-}
