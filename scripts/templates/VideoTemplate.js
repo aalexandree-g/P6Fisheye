@@ -12,6 +12,7 @@ export default class VideoTemplate extends Media {
 
         const $videoElement = document.createElement("article")
         $videoElement.classList.add("media_element")
+        $videoElement.id = this._id
         const videoElement = `
             <a href="" aria-label="${this._title}, closeup view">
                 <img src="./assets/media/thumbnails/${thumbnailName}" alt="">
@@ -19,7 +20,7 @@ export default class VideoTemplate extends Media {
             <div class="media_infos">
                 <span class="media_title">${this._title}</span>
                 <div class="likes_section">
-                    ${this._likes}
+                    <span class="media_likes">${this._likes}</span>
                     <i class="fa-solid fa-heart" aria-label="likes"></i>
                 </div>
             </div>

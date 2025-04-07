@@ -1,9 +1,19 @@
-export default class EncartTemplate {
-    constructor(photographer) {
+export default class PanelTemplate {
+    constructor(photographer, media) {
         this._photographer = photographer
+        this._media = media
     }
 
-    createPanel(totalLikes) {
+    getTotalLikes() {
+        let totalLikes = 0
+        for (let i = 0; i < this._media.length; i++) {
+            totalLikes += this._media[i].likes
+        }
+        return totalLikes
+    }
+
+    createPanel() {
+        const totalLikes = this.getTotalLikes()
         const $panel = document.querySelector(".panel")
         const panel = `
             <div class="likes">

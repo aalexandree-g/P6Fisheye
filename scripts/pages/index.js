@@ -1,6 +1,5 @@
 import PhotographersApi from "../utils/PhotographersApi.js"
 import PhotographerService from "../services/PhotographerService.js"
-import PhotographerTemplate from "../templates/PhotographerTemplate.js"
 
 class IndexApp {
     constructor() {
@@ -16,5 +15,4 @@ class IndexApp {
     }
 }
 
-const indexApp = new IndexApp()
-indexApp.main()
+new IndexApp().main()

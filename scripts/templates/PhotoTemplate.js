@@ -9,6 +9,7 @@ export default class PhotoTemplate extends Media {
     createMedia() {
         const $photoElement = document.createElement("article")
         $photoElement.classList.add("media_element")
+        $photoElement.id = this._id
         const photoElement = `
             <a href="" aria-label="${this._title}, closeup view">
                 <img src="./assets/media/${this._photographerId}/${this._image}" alt="">
@@ -16,7 +17,7 @@ export default class PhotoTemplate extends Media {
             <div class="media_infos">
                 <span class="media_title">${this._title}</span>
                 <div class="likes_section">
-                    ${this._likes}
+                    <span class="media_likes">${this._likes}</span>
                     <i class="fa-solid fa-heart" aria-label="likes"></i>
                 </div>
             </div>

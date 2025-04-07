@@ -1,7 +1,7 @@
 import PhotographersApi from "../utils/PhotographersApi.js"
 import PhotographerService from "../services/PhotographerService.js"
 import PhotographerTemplate from "../templates/PhotographerTemplate.js"
-import EncartTemplate from "../templates/EncartTemplate.js"
+import PanelTemplate from "../templates/PanelTemplate.js"
 
 class PhotographerApp {
     constructor() {
@@ -11,20 +11,23 @@ class PhotographerApp {
 
     async main() {
         // get photographer and media
-        const photographer = await this.service.getPhotographerFromUrl()
-        const media = await this.service.getMediaForPhotographer(photographer)
-
+        const { photographer, media} = await this.service.getDataFromUrl()
         // display photographer and media
-        const header = new PhotographerTemplate(photographer)
-        header.createPhotographerHeader()
+        new PhotographerTemplate(photographer).createPhotographerHeader()
         this.service.displayPhotographerMedia(media)
-
         // display panel
-        const likes = this.service.getTotalLikes(media)
-        const panel = new EncartTemplate(photographer)
-        panel.createPanel(likes)
+        new PanelTemplate(photographer, media).createPanel()
+
+        media.forEach(m => {
+            const $media = document.getElementById(`${m.id}`)
+            const $likes = $media.querySelector(".likes_section")
+
+            $likes.addEventListener("click", () => {
+                const newLikes = m.increaseLikes()
+                $media.querySelector(".media_likes").textContent = newLikes
+            })
+        })
     }
 }
 
-const photographerApp = new PhotographerApp()
-photographerApp.main()
+new PhotographerApp().main()

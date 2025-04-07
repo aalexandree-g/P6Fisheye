@@ -6,19 +6,20 @@ export default class PhotographerService {
         this._api = api
     }
 
-    async getPhotographerFromUrl() {
+    async getDataFromUrl() {
         // get id from url
         const params = new URLSearchParams(window.location.search)
         const id = parseInt(params.get("id"))
-        // find photographer with this id
+        // get photographer with this id
         const photographers = await this._api.getPhotographers()
-        return photographers.find(photographer => photographer.id === id)
-    }
-
-    async getMediaForPhotographer(photographer) {
+        const photographer = photographers.find(photographer => photographer.id === id)
+        // get media
         const allMediaData = await this._api.getMedia()
-        const photographerMedia = allMediaData.filter(media => media.photographerId === photographer.id)
-        return photographerMedia.map(media => new MediaFactory(media))
+        const media = allMediaData
+            .filter(media => media.photographerId === photographer.id)  // only media from photographer
+            .map(media => new MediaFactory(media))                      // split into photos and videos
+
+        return { photographer, media }
     }
 
     displayPhotographersCards(photographers) {
@@ -38,13 +39,5 @@ export default class PhotographerService {
             const mediaElement = media.createMedia()
             $section.appendChild(mediaElement)
         })
-    }
-
-    getTotalLikes(photographerMedia) {
-        let totalLikes = 0
-        for (let i = 0; i < photographerMedia.length; i++) {
-            totalLikes += photographerMedia[i].likes
-        }
-        return totalLikes
     }
 }

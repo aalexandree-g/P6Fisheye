@@ -16,6 +16,8 @@ export default class Media {
 
     get likes() { return this._likes }
 
+    increaseLikes() { return this._likes + 1 }
+
     get date() { return this._date }
 
     get price() { return this._price }
