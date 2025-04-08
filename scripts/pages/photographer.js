@@ -2,6 +2,7 @@ import PhotographersApi from "../utils/PhotographersApi.js"
 import PhotographerService from "../services/PhotographerService.js"
 import PhotographerTemplate from "../templates/PhotographerTemplate.js"
 import PanelTemplate from "../templates/PanelTemplate.js"
+import ContactForm from "../utils/contactForm.js"
 
 class PhotographerApp {
     constructor() {
@@ -17,6 +18,9 @@ class PhotographerApp {
         this.service.displayPhotographerMedia(media)
         // display panel
         new PanelTemplate(photographer, media).createPanel()
+
+        const form = new ContactForm()
+        form.init()
     }
 }
 

@@ -1,5 +1,23 @@
-const modal = document.getElementById("contact_modal")
+export default class ContactForm {
+    constructor() {
+        
+    }
+    displayModal() {
+        const $modal = document.querySelector(".modal")
+        $modal.classList.add("visible")
+        document.querySelector(".photographer_header").classList.add("hidden")
+        document.querySelector(".media_section").classList.add("hidden")
+    }
 
-function displayModal() { modal.style.display = "block" }
+    closeModal() {
+        const $modal = document.querySelector(".modal")
+        $modal.classList.remove("visible")
+    }
 
-function closeModal() { modal.style.display = "none" }
+    init() {
+        const btn = document.querySelector(".contact_button")
+        btn.addEventListener("click", () => {
+            this.displayModal()
+        })
+    }
+}
