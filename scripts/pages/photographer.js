@@ -17,16 +17,6 @@ class PhotographerApp {
         this.service.displayPhotographerMedia(media)
         // display panel
         new PanelTemplate(photographer, media).createPanel()
-
-        media.forEach(m => {
-            const $media = document.getElementById(`${m.id}`)
-            const $likes = $media.querySelector(".likes_section")
-
-            $likes.addEventListener("click", () => {
-                const newLikes = m.increaseLikes()
-                $media.querySelector(".media_likes").textContent = newLikes
-            })
-        })
     }
 }
 

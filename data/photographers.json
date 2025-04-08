@@ -70,7 +70,7 @@
 			"photographerId": 82,
 			"title": "Fashion Urban Jungle",
 			"image": "Fashion_Urban_Jungle.jpg",
-			"likes": 11,
+			"likes": 112,
 			"date": "2011-11-06",
 			"price": 55
 		},
@@ -97,7 +97,7 @@
 			"photographerId": 82,
 			"title": "Sparkles",
 			"image": "Event_Sparklers.jpg",
-			"likes": 2,
+			"likes": 27,
 			"date": "2020-05-25",
 			"price": 55
 		},
@@ -187,7 +187,7 @@
 			"photographerId": 925,
 			"title": "Venture Conference",
 			"image": "Event_VentureConference.jpg",
-			"likes": 2,
+			"likes": 29,
 			"date": "2019-01-02",
 			"price": 70
 		},
@@ -196,7 +196,7 @@
 			"photographerId": 925,
 			"title": "Product Pitch",
 			"image": "Event_ProductPitch.jpg",
-			"likes": 3,
+			"likes": 38,
 			"date": "2019-05-20",
 			"price": 70
 		},

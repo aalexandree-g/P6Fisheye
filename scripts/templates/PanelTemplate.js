@@ -6,18 +6,31 @@ export default class PanelTemplate {
 
     getTotalLikes() {
         let totalLikes = 0
-        for (let i = 0; i < this._media.length; i++) {
-            totalLikes += this._media[i].likes
-        }
+        this._media.forEach(m => {
+            totalLikes += m.likes
+        })
         return totalLikes
     }
 
+    updateLikes(media) {
+        const $media = document.getElementById(`${media.id}`)
+        media.likes += 1
+        $media.querySelector(".media_likes").textContent = media.likes
+        document.querySelector(".total_likes").textContent = this.getTotalLikes()
+    }
+
     createPanel() {
-        const totalLikes = this.getTotalLikes()
+        this._media.forEach(media => {
+            const $media = document.getElementById(`${media.id}`)
+            $media.querySelector(".likes_section").addEventListener("click", () => {
+                this.updateLikes(media)
+            }, { once : true })
+        })
         const $panel = document.querySelector(".panel")
+        const totalLikes = this.getTotalLikes()
         const panel = `
             <div class="likes">
-                ${totalLikes}
+                <span class="total_likes">${totalLikes}</span>
                 <i class="fa-solid fa-heart" aria-label="likes"></i>
             </div>
             <div class="price">
