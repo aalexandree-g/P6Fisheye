@@ -18,9 +18,8 @@ class PhotographerApp {
         this.service.displayPhotographerMedia(media)
         // display panel
         new PanelTemplate(photographer, media).createPanel()
-
-        const form = new ContactForm()
-        form.init()
+        // create modal
+        new ContactForm(photographer).init()
     }
 }
 

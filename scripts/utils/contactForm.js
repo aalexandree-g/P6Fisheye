@@ -1,23 +1,35 @@
 export default class ContactForm {
-    constructor() {
-        
+    constructor(photographer) {
+        this._photographer = photographer
     }
+
     displayModal() {
-        const $modal = document.querySelector(".modal")
-        $modal.classList.add("visible")
-        document.querySelector(".photographer_header").classList.add("hidden")
-        document.querySelector(".media_section").classList.add("hidden")
+        document.querySelector(".modal h2").innerHTML += `Contactez<br>${this._photographer.name}`
+        document.querySelectorAll(".modal, .background").forEach(element => {
+            element.classList.add("visible", "showing")
+        })
     }
 
     closeModal() {
-        const $modal = document.querySelector(".modal")
-        $modal.classList.remove("visible")
+        document.querySelectorAll(".modal, .background").forEach(element => {
+            element.classList.remove("showing")
+            element.classList.add("hiding")
+            setTimeout(() => {
+                document.querySelector(".modal h2").textContent = ""
+                element.classList.remove("visible", "hiding")
+            }, 250)
+        })
     }
 
     init() {
-        const btn = document.querySelector(".contact_button")
-        btn.addEventListener("click", () => {
+        document.querySelector(".contact_button").addEventListener("click", () => {
             this.displayModal()
+        })
+
+        document.querySelectorAll(".modal img, .background").forEach(element => {
+            element.addEventListener("click", () => {
+                this.closeModal()
+            })
         })
     }
 }

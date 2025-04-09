@@ -1,9 +1,12 @@
+/*** MAIN ******/
+
 #main {
     display: flex;
     flex-direction: column;
     gap: 30px;
 }
 
+/*** PHOTOGRAPHER HEADER ******/
 .photographer_header {
     display: flex;
     flex-direction: row;
@@ -13,30 +16,25 @@
     height: 300px;
     padding: 0px 60px;
 }
-
 .photographer_header .text_content {
     display: flex;
     flex-direction: column;
     gap: 15px;
 }
-
 .photographer_header .text_content h1 {
     color: #D3573C;
     font-size: 48px;
     font-weight: 100;
     margin: -10px 0px;
 }
-
 .photographer_header .text_content .location {
     color: #901C1C;
     font-size: 20px;
 }
-
 .photographer_header .text_content .slogan {
     font-size: 14px;
     color: #707070;
 }
-
 .photographer_header .contact_button {
     font-size: 20px;
     font-weight: bold;
@@ -49,7 +47,6 @@
     border-radius: 5px;
     cursor: pointer;
 }
-
 .photographer_header img {
     height: 200px;
     width: 200px;
@@ -57,14 +54,18 @@
     object-fit: cover;
 }
 
+
+/*** MEDIA ******/
 .media_section {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     gap: 30px;
     width: 100%;
     margin-bottom: 150px;
+    opacity: 0;
+    transform: scale(0);
+    animation: media-reveal 600ms 500ms forwards;
 }
-
 .media_section img {
     display: block;
     height: 280px;
@@ -72,13 +73,11 @@
     object-fit: cover;
     margin: auto;
 }
-
 .media_section .media_element {
     display: flex;
     flex-direction: column;
     gap: 7px;
 }
-
 .media_section .media_infos {
     display: flex;
     justify-content: space-between;
@@ -87,7 +86,6 @@
     color: #901C1C;
     font-size: 16px;
 }
-
 .media_section .likes_section {
     display: flex;
     flex-direction: row;
@@ -97,6 +95,23 @@
     cursor: pointer;
 }
 
+
+/*** ANIMATION MEDIA REVEAL ******/
+@keyframes media-reveal {
+    0% {
+        opacity: 0;
+        transform-origin: top;
+        transform: scaleY(0);
+    }
+    100% {
+        opacity: 1;
+        transform-origin: top;
+        transform: scaleY(1);
+    }
+}
+
+
+/*** PANEL ******/
 .panel {
     display: flex;
     flex-direction: row;
@@ -110,72 +125,128 @@
     border-top-left-radius: 7px;
     border-top-right-radius: 7px;
     background-color: #DB8876;
+    transform: scale(0);
+    animation: panel-reveal 250ms 1200ms ease-in-out forwards;
 }
-
 .panel .likes {
     display: flex;
     align-items: center;
     gap: 10px;
 }
 
+
+/*** PANEL REVEAL ******/
+@keyframes panel-reveal {
+    0% {
+        opacity: 0;
+        transform: scaleY(0);
+        transform-origin: bottom;
+      }
+      40% {
+        opacity: 1;
+        transform: scaleY(1.2);
+        transform-origin: bottom;
+      }
+      60% {
+        transform: scaleY(0.9);
+        transform-origin: bottom;
+      }
+      80% {
+        transform: scaleY(1.05);
+        transform-origin: bottom;
+      }
+      100% {
+        transform: scaleY(1);
+      }
+}
+
+
+/*** MODAL ******/
 .modal {
+    position: fixed;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     display: none;
     flex-direction: column;
     align-items: center;
     justify-content: space-between;
+    gap: 25px;
     padding: 35px;
     margin: auto;
     border-radius: 5px;
     background-color: #DB8876;
     width: 400px;
+    z-index: 101;
 }
-
 .modal.visible {
     display: flex;
 }
-
-.hidden {
-    display: none;
-}
-
 .modal header {
     justify-content: space-between;
     width: 100%;
 }
-
 .modal header img {
     cursor: pointer;
 }
-
 .modal header h2 {
-    font-size: 40px;
+    font-size: 36px;
     font-weight: normal;
-    text-align: center;
+    text-align: left;
 }
 
+
+/*** MODAL ANIMATION ******/
+.modal, .background {
+    opacity: 0;
+    transition: opacity 250ms ease-out;
+  }
+.modal.visible, .background.visible {
+    opacity: 1;
+}
+.modal.showing, .background.showing {
+animation: fadeIn 250ms forwards;
+}
+.modal.hiding, .background.hiding {
+animation: fadeOut 250ms forwards;
+}
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+@keyframes fadeOut {
+    from { opacity: 1; }
+    to { opacity: 0; }
+}
+
+
+/*** FORM ******/
 form {
     display: flex;
     width: 100%;
     flex-direction: column;
     align-items: flex-start;
+    gap: 10px;
 }
-
 form label {
     color: #312E2E;
-    font-size: 24px;
+    font-size: 20px;
 }
-
 form div {
     display: flex;
     flex-direction: column;
+    align-items: flex-start;
     width: 100%;
-    align-items: self-start;
-    margin-bottom: 26px;
+    gap: 3px;
 }
-
-form input {
+form input, textarea {
+    font-family: "DM Sans", sans-serif;
+    font-size: 20px;
     width: 100%;
-    height: 40px;
+    height: 50px;
     border: none;
     border-radius: 5px;
+}
+textarea {
+    height: 120px;
 }
