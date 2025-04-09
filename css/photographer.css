@@ -35,7 +35,8 @@
     font-size: 14px;
     color: #707070;
 }
-.photographer_header .contact_button {
+.photographer_header .contact_button,
+form .submit_button {
     font-size: 20px;
     font-weight: bold;
     color: white;
@@ -247,6 +248,9 @@ form input, textarea {
     border: none;
     border-radius: 5px;
 }
-textarea {
+form textarea {
     height: 120px;
+}
+form .submit_button {
+    margin-top: 20px;
 }
