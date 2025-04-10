@@ -11,7 +11,7 @@ export default class VideoTemplate extends Media {
         const thumbnailName = videoName.replace(/\.mp4$/, ".jpg")
 
         const $videoElement = document.createElement("article")
-        $videoElement.classList.add("media_element")
+        $videoElement.classList.add("media_card")
         $videoElement.id = this._id
         const videoElement = `
             <a href="" aria-label="${this._title}, closeup view">

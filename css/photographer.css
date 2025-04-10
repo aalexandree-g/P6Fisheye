@@ -36,7 +36,7 @@
     color: #707070;
 }
 .photographer_header .contact_button,
-form .submit_button {
+form #submit_button {
     font-size: 20px;
     font-weight: bold;
     color: white;
@@ -74,7 +74,7 @@ form .submit_button {
     object-fit: cover;
     margin: auto;
 }
-.media_section .media_element {
+.media_section .media_card {
     display: flex;
     flex-direction: column;
     gap: 7px;
@@ -251,6 +251,33 @@ form input, textarea {
 form textarea {
     height: 120px;
 }
-form .submit_button {
+form #submit_button {
     margin-top: 20px;
+}
+
+
+/*** LIGHTBOX ******/
+.lightbox {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    height: 95%;
+    width: 95%;
+    margin: auto;
+    margin-bottom: 150px;
+    background-color: aqua;
+}
+.lightbox img {
+    max-width: 80vw;
+    max-height: 80vh;
+    object-fit: cover;
+}
+.lightbox .media_title {
+    color: #901C1C;
+    font-size: 16px;
+}
+.lightbox .arrow {
+    font-size: 96px;
+    color: #901C1C;
 }

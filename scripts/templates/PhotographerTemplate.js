@@ -37,7 +37,7 @@ export default class PhotographerTemplate {
                     ${this._photographer.tagline}
                 </span>
             </div>
-            <button class="contact_button">Contactez-moi</button>
+            <button class="contact_button" aria-label="Contactez ${this._photographer.name}">Contactez-moi</button>
             <img src="./assets/photographers/${this._photographer.portrait}" alt="${this._photographer.name}">
         `
         $header.innerHTML = photographerHeader

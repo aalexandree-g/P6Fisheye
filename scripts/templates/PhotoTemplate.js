@@ -8,12 +8,10 @@ export default class PhotoTemplate extends Media {
 
     createMedia() {
         const $photoElement = document.createElement("article")
-        $photoElement.classList.add("media_element")
+        $photoElement.classList.add("media_card")
         $photoElement.id = this._id
         const photoElement = `
-            <a href="" aria-label="${this._title}, closeup view">
-                <img src="./assets/media/${this._photographerId}/${this._image}" alt="">
-            </a>
+            <img class="media_element" src="./assets/media/${this._photographerId}/${this._image}" alt="${this._title}, agrandir la photo">
             <div class="media_infos">
                 <span class="media_title">${this._title}</span>
                 <div class="likes_section">

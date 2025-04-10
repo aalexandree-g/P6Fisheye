@@ -21,7 +21,7 @@ body {
     z-index: 100;
 }
 
-.content {
+.main-content {
     padding: 0px 100px 0px;
     min-width: 900px;
     height: 100%;

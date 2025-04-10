@@ -1,44 +1,64 @@
 export default class ContactForm {
     constructor(photographer) {
         this._photographer = photographer
+        this.$content = document.querySelector(".main-content")
+        this.$background = document.querySelector(".background")
+        this.$modal = document.querySelector(".modal")
+        this.$modal_title = document.getElementById("modal_title")
+        this.$modalAndBackground = document.querySelectorAll(".modal, .background")
+        this.$contact_button = document.querySelector(".contact_button")
+        this.$close_icon = document.querySelector(".modal img")
+        this.$submit_button = document.getElementById("submit_button")
     }
 
     displayModal() {
-        document.querySelector(".modal h2").innerHTML += `Contactez<br>${this._photographer.name}`
-        document.querySelectorAll(".modal, .background").forEach(element => {
+        this.$modal_title.innerHTML += `Contactez<br>${this._photographer.name}`
+    
+        this.$modalAndBackground.forEach(element => {
             element.classList.add("visible", "showing")
         })
+        this.$content.setAttribute("inert", "")
     }
 
     closeModal() {
-        document.querySelectorAll(".modal, .background").forEach(element => {
+        this.$modalAndBackground.forEach(element => {
             element.classList.remove("showing")
             element.classList.add("hiding")
             setTimeout(() => {
-                document.querySelector(".modal h2").innerHTML = ""
+                this.$modal_title.textContent = ""
                 element.classList.remove("visible", "hiding")
             }, 250)
         })
+        this.$content.removeAttribute("inert")
     }
 
     init() {
-        document.querySelector(".contact_button").addEventListener("click", () => {
-            this.displayModal()
+        // open modal
+        this.$contact_button.addEventListener("click", () => { this.displayModal() })
+
+        // close modal
+        document.addEventListener("click", (e) => {
+            if (e.target.matches(".modal img") || e.target.matches("body")) { this.closeModal() }
         })
 
-        document.querySelectorAll(".modal img, .background").forEach(element => {
-            element.addEventListener("click", () => {
+        // keypress to close modal
+        document.addEventListener("keydown", (e) => {
+            if (
+                e.key === "Escape" ||
+                ((e.key === "Enter" || e.key === " ") && document.activeElement === this.$close_icon)
+            ) {
+                e.preventDefault()
                 this.closeModal()
-            })
+                }
         })
 
-        document.querySelector(".submit_button").addEventListener("click", (e) => {
+        // submit form
+        this.$submit_button.addEventListener("click", (e) => {
             e.preventDefault()
             const firstnameInput = document.getElementById("firstname").value
             const lastnameInput = document.getElementById("lastname").value
             const emailInput = document.getElementById("email").value
             const messageInput = document.getElementById("message").value
-
             console.log(`Les données invalides ne sont pas vérifiées.\nPrénom : ${firstnameInput}\nNom : ${lastnameInput}\nEmail : ${emailInput}\nMessage : ${messageInput}`)
         })
     }
