@@ -14,7 +14,18 @@ export default class PanelTemplate {
 
     updateLikes(media) {
         const $media = document.getElementById(`${media.id}`)
-        media.likes += 1
+        const $like_icon = $media.querySelector(".like_icon")
+        if (!media.liked) {
+            media.likes += 1
+            media.liked = true
+            $like_icon.classList.remove("fa-regular")
+            $like_icon.classList.add("fa-solid")
+        } else {
+            media.likes -= 1
+            media.liked = false
+            $like_icon.classList.remove("fa-solid")
+            $like_icon.classList.add("fa-regular")
+        }
         $media.querySelector(".media_likes").textContent = media.likes
         document.querySelector(".total_likes").textContent = this.getTotalLikes()
     }
@@ -23,8 +34,14 @@ export default class PanelTemplate {
         this._media.forEach(media => {
             const $media = document.getElementById(`${media.id}`)
             $media.querySelector(".likes_section").addEventListener("click", () => {
-                this.updateLikes(media)
-            }, { once : true })
+                    this.updateLikes(media)
+                })
+            $media.querySelector(".likes_section").addEventListener("keydown", (e) => {
+                if (e.key === "Enter" || e.key === " ") {
+                    e.preventDefault()
+                    this.updateLikes(media)
+                }
+            })
         })
         const $panel = document.querySelector(".panel")
         const totalLikes = this.getTotalLikes()

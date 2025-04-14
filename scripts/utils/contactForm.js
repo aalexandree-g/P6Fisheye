@@ -3,9 +3,8 @@ export default class ContactForm {
         this._photographer = photographer
         this.$content = document.querySelector(".main-content")
         this.$background = document.querySelector(".background")
-        this.$modal = document.querySelector(".modal")
         this.$modal_title = document.getElementById("modal_title")
-        this.$modalAndBackground = document.querySelectorAll(".modal, .background")
+        this.$modal = document.querySelectorAll(".modal, .background")
         this.$contact_button = document.querySelector(".contact_button")
         this.$close_icon = document.querySelector(".modal img")
         this.$submit_button = document.getElementById("submit_button")
@@ -14,14 +13,14 @@ export default class ContactForm {
     displayModal() {
         this.$modal_title.innerHTML += `Contactez<br>${this._photographer.name}`
     
-        this.$modalAndBackground.forEach(element => {
+        this.$modal.forEach(element => {
             element.classList.add("visible", "showing")
         })
         this.$content.setAttribute("inert", "")
     }
 
     closeModal() {
-        this.$modalAndBackground.forEach(element => {
+        this.$modal.forEach(element => {
             element.classList.remove("showing")
             element.classList.add("hiding")
             setTimeout(() => {
