@@ -6,21 +6,6 @@ body {
     padding: 0;
 }
 
-.background.visible {
-    display: block;
-}
-
-.background {
-    display: none;
-    position: fixed;
-    top: 0;
-    left: 0;
-    height: 100%;
-    width: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
-    z-index: 100;
-}
-
 .main-content {
     padding: 0px 100px 0px;
     min-width: 900px;
@@ -36,24 +21,21 @@ header {
     align-items: center;
     height: 90px;
 }
-
 h1 {
     color: #901C1C;
 }
-
 .logo {
     height: 50px;
 }
 
-.photographer_section {
+#photographer_section {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     gap: 70px;
     margin-top: 100px;
     margin-bottom: 150px;
 }
-
-.photographer_section article {
+#photographer_section article {
     display: flex;
     flex-direction: column;
     gap: 5px;
@@ -62,34 +44,28 @@ h1 {
     justify-self: center;
     text-align: center;
 }
-
-.photographer_section article img {
+#photographer_section article img {
     height: 200px;
     width: 200px;
     border-radius: 50%;
     object-fit: cover;
 }
-
-.photographer_section article h2 {
+#photographer_section article h2 {
     color: #D3573C;
     margin: 20px 0px 5px;
     font-size: 36px;
     font-weight: 100;
 }
-
-.photographer_section article a {
+#photographer_section article a {
     text-decoration: none;
 }
-
-.photographer_section article .location {
+#photographer_section article .location {
     color: #901C1C;
     font-size: 15px;
 }
-
-.photographer_section article .slogan, .cost {
+#photographer_section article .slogan, .cost {
     font-size: 12px;
 }
-
-.photographer_section article .cost {
+#photographer_section article .cost {
     color: #707070;
 }

@@ -18,23 +18,20 @@ export default class PhotographerService {
         const media = allMediaData
             .filter(media => media.photographerId === photographer.id)  // only media from photographer
             .map(media => new MediaFactory(media))                      // split into photos and videos
-
         return { photographer, media }
     }
 
     displayPhotographersCards(photographers) {
-        const $section = document.querySelector(".photographer_section")
+        const $section = document.getElementById("photographer_section")
         photographers.forEach(photographer => {
-            const card = new PhotographerTemplate(photographer)
-            $section.appendChild(
-                card.createPhotographerCard()
-            )
+            const card = new PhotographerTemplate(photographer).createPhotographerCard()
+            $section.appendChild(card)
         })
         return $section
     }
 
     displayPhotographerMedia(mediaList) {
-        const $section = document.querySelector(".media_section")
+        const $section = document.getElementById("media_section")
         mediaList.forEach(media => {
             const mediaElement = media.createMedia()
             $section.appendChild(mediaElement)

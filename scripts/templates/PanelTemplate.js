@@ -2,6 +2,7 @@ export default class PanelTemplate {
     constructor(photographer, media) {
         this._photographer = photographer
         this._media = media
+        this.init()
     }
 
     getTotalLikes() {
@@ -30,12 +31,12 @@ export default class PanelTemplate {
         document.querySelector(".total_likes").textContent = this.getTotalLikes()
     }
 
-    createPanel() {
+    init() {
         this._media.forEach(media => {
             const $media = document.getElementById(`${media.id}`)
             $media.querySelector(".likes_section").addEventListener("click", () => {
-                    this.updateLikes(media)
-                })
+                this.updateLikes(media)
+            })
             $media.querySelector(".likes_section").addEventListener("keydown", (e) => {
                 if (e.key === "Enter" || e.key === " ") {
                     e.preventDefault()
@@ -43,7 +44,7 @@ export default class PanelTemplate {
                 }
             })
         })
-        const $panel = document.querySelector(".panel")
+        const $panel = document.getElementById("panel")
         const totalLikes = this.getTotalLikes()
         const panel = `
             <div class="likes">

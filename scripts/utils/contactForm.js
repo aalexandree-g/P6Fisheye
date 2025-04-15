@@ -2,17 +2,16 @@ export default class ContactForm {
     constructor(photographer) {
         this._photographer = photographer
         this.$content = document.querySelector(".main-content")
-        this.$background = document.querySelector(".background")
         this.$modal_title = document.getElementById("modal_title")
         this.$modal = document.querySelectorAll(".modal, .background")
         this.$contact_button = document.querySelector(".contact_button")
         this.$close_icon = document.querySelector(".modal img")
         this.$submit_button = document.getElementById("submit_button")
+        this.init()
     }
 
     displayModal() {
-        this.$modal_title.innerHTML += `Contactez<br>${this._photographer.name}`
-    
+        this.$modal_title.innerHTML = `Contactez<br>${this._photographer.name}`
         this.$modal.forEach(element => {
             element.classList.add("visible", "showing")
         })
@@ -33,13 +32,13 @@ export default class ContactForm {
 
     init() {
         // open modal
-        this.$contact_button.addEventListener("click", () => { this.displayModal() })
-
+        this.$contact_button.addEventListener("click", () => {
+            this.displayModal()
+        })
         // close modal
         document.addEventListener("click", (e) => {
             if (e.target.matches(".modal img") || e.target.matches("body")) { this.closeModal() }
         })
-
         // keypress to close modal
         document.addEventListener("keydown", (e) => {
             if (
@@ -50,7 +49,6 @@ export default class ContactForm {
                 this.closeModal()
                 }
         })
-
         // submit form
         this.$submit_button.addEventListener("click", (e) => {
             e.preventDefault()

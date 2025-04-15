@@ -6,7 +6,7 @@ export default class PhotographerTemplate {
     createPhotographerCard() {
         const $card = document.createElement("article")
         $card.classList.add("photographer_card")
-        const photographerCard = `
+        $card.innerHTML = `
             <a href="photographer.html?id=${this._photographer.id}" aria-label="${this._photographer.name}">
                 <img src="./assets/photographers/${this._photographer.portrait}" alt="">
                 <h2>${this._photographer.name}</h2>
@@ -20,14 +20,13 @@ export default class PhotographerTemplate {
             <span class="cost" aria-label="Tarif : ${this._photographer.price}€ par jour">
                 ${this._photographer.price}€/jour
             </span>
-        `
-        $card.innerHTML = photographerCard
+        `.trim()
         return $card
     }
 
     createPhotographerHeader() {
-        const $header = document.querySelector(".photographer_header")
-        const photographerHeader = `
+        const $header = document.getElementById("photographer_header")
+        $header.innerHTML = `
             <div class="text_content">
                 <h1>${this._photographer.name}</h1>
                 <span class="location" aria-label="Localisation : ${this._photographer.location}">
@@ -39,8 +38,7 @@ export default class PhotographerTemplate {
             </div>
             <button class="contact_button" aria-label="Contactez ${this._photographer.name}">Contactez-moi</button>
             <img src="./assets/photographers/${this._photographer.portrait}" alt="${this._photographer.name}">
-        `
-        $header.innerHTML = photographerHeader
+        `.trim()
         return $header
     }
 }

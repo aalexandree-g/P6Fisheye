@@ -3,7 +3,7 @@ import PhotographerService from "../services/PhotographerService.js"
 import PhotographerTemplate from "../templates/PhotographerTemplate.js"
 import PanelTemplate from "../templates/PanelTemplate.js"
 import ContactForm from "../utils/ContactForm.js"
-import MediaTemplate from "../templates/MediaTemplate.js"
+import Lightbox from "../utils/Lightbox.js"
 
 class PhotographerApp {
     constructor() {
@@ -18,11 +18,11 @@ class PhotographerApp {
         new PhotographerTemplate(photographer).createPhotographerHeader()
         this.service.displayPhotographerMedia(media)
         // display panel
-        new PanelTemplate(photographer, media).createPanel()
+        new PanelTemplate(photographer, media)
         // create modal
-        new ContactForm(photographer).init()
-
-        new MediaTemplate(media).createLightbox()
+        new ContactForm(photographer)
+        // create lightbox
+        new Lightbox(media)
     }
 }
 
