@@ -25,11 +25,11 @@ export default class VideoTemplate extends MediaTemplate {
         return $videoElement
     }
 
-    createLightbox() {
+    createLightbox(mediaSrc) {
         const $lightbox_media = document.getElementById("lightbox_media")
         $lightbox_media.innerHTML = `
             <video id="lightbox_video" controls autoplay>
-                <source class="lightbox_file" src="./assets/media/${this._photographerId}/${this._video}" type="video/mp4">
+                <source class="lightbox_file" src="./assets/media/${this._photographerId}/${mediaSrc}" type="video/mp4">
                 Votre navigateur ne supporte pas la vidéo.
             </video>
             <span class="lightbox_title">${this._title}</span>

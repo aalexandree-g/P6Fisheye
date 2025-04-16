@@ -2,13 +2,9 @@ import PhotoTemplate from "../templates/PhotoTemplate.js"
 export default class Lightbox {
     constructor(photographer, media) {
         this._media = media
-        this._photographerId = photographer.id
-        this._image = media.image
         this.$content = document.querySelector(".main-content")
-        this.$lightbox_media = document.getElementById("lightbox_media")
         this.$lightbox = document.querySelectorAll(".lightbox, .background")
         this.$close_icon = document.querySelector(".lightbox_close-btn")
-        this.index = 0
         this.mediaSrc = this._media.map(element => element.getSrc())
         this.init()
     }
@@ -43,12 +39,10 @@ export default class Lightbox {
         this.updateLightBox()
     }
 
-
     updateLightBox() {
-        const $lightbox_file = document.querySelector(".lightbox_file")
-        $lightbox_file.src = `./assets/media/${this._photographerId}/${this.mediaSrc[this.index]}`
+        document.getElementById("lightbox_media").innerHTML = ""
+        this._media[this.index].createLightbox(this.mediaSrc[this.index])     
     }
-    
 
     init() {
         // open lightbox
@@ -60,46 +54,51 @@ export default class Lightbox {
             })
             // keypress to open lightbox
             $media.querySelector(".media_element").addEventListener("keydown", (e) => {
-                if ((e.key === "Enter" || e.key === " ")) {
+                if ((
+                    e.key === "Enter" ||
+                    e.key === " ")
+                ) {
                     e.preventDefault()
                     media.createLightbox(this.mediaSrc[index])
                     this.displayLightbox(index)
                 }
-            })
+            })    
         })
-
         // change media
         document.querySelector(".left").addEventListener("click", () => { this.showPreviousMedia() })
         document.querySelector(".right").addEventListener("click", () => { this.showNextMedia() })
-
         // keypress to change media
         document.querySelector(".lightbox").addEventListener("keydown", (e) => {
-            if (e.key === "ArrowLeft") {
-                this.showPreviousMedia()
-            } else if (e.key === "ArrowRight") {
-                this.showNextMedia()
-            }
+            if (e.key === "ArrowLeft") { this.showPreviousMedia() }
+            else if (e.key === "ArrowRight") { this.showNextMedia() }
         })
         document.querySelector(".left").addEventListener("keydown", (e) => {
-            if ((e.key === "Enter" || e.key === " ")
+            if ((
+                e.key === "Enter" ||
+                e.key === " ")
             ) {
                 e.preventDefault()
                 this.showPreviousMedia()
             }
         })
         document.querySelector(".right").addEventListener("keydown", (e) => {
-            if ((e.key === "Enter" || e.key === " ")
+            if ((
+                e.key === "Enter" ||
+                e.key === " ")
             ) {
                 e.preventDefault()
                 this.showNextMedia()
             }
         })
-
         // close lightbox
         document.addEventListener("click", (e) => {
-            if (e.target.matches(".lightbox .lightbox_close-btn") || e.target.matches("body")) { this.closeLightbox() }
+            if (
+                e.target.matches(".lightbox .lightbox_close-btn") ||
+                e.target.matches("body")
+            ) {
+                this.closeLightbox()
+            }
         })
-
         // keypress to close lightbox
         document.addEventListener("keydown", (e) => {
             if (
