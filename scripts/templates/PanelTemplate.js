@@ -46,7 +46,7 @@ export default class PanelTemplate {
         })
         const $panel = document.getElementById("panel")
         const totalLikes = this.getTotalLikes()
-        const panel = `
+        $panel.innerHTML = `
             <div class="likes">
                 <span class="total_likes">${totalLikes}</span>
                 <i class="fa-solid fa-heart" aria-label="likes"></i>
@@ -54,8 +54,7 @@ export default class PanelTemplate {
             <div class="price">
                 ${this._photographer.price}€/jour
             </div>
-        `
-        $panel.innerHTML = panel
+        `.trim()
         return $panel
     }
 }

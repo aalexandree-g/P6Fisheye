@@ -29,31 +29,24 @@
             </div>
         </main>
     </div>
-    
-
-
-
-    <div class="lightbox" role="dialog" aria-label="Image en plein écran">
+    <div class="lightbox" role="dialog" aria-label="Image en plein écran" tabindex="0">
         <div class="lightbox_content">
-            <button class="close-btn" aria-label="Fermer la lightbox" tabindex="0">&times;</button>
+            <button class="lightbox_close-btn" aria-label="Fermer la lightbox" tabindex="0">&times;</button>
             <div class="lightbox_nav">
-                <button class="nav left">&#10094;</button>
+                <a class="nav left" aria-label="Aller au média précédent" tabindex="0">&#10094;</a>
                 <div id="lightbox_media">
                     <!-- templates are displayed here -->
                 </div>
-                <button class="nav right">&#10095;</button>
+                <a class="nav right" aria-label="Aller au média suivant" tabindex="0">&#10095;</a>
             </div>
         </div>
     </div>
-
-
-
     <div class="modal" role="dialog" aria-labelledby="modal_title">
         <header>
             <h2 id="modal_title">
                 <!-- Photographer's name is displayed here-->
             </h2>
-            <img src="./assets/icons/close.svg" alt="Fermer la modale" role="button" tabindex="0">
+            <button class="modal_close-btn" aria-label="Fermer la lightbox" tabindex="0">&times;</button>
         </header>
         <form id="mainForm" action="index.html" method="get">
             <div class="formData">
@@ -75,8 +68,6 @@
             <button id="submit_button" type="submit">Envoyer</button>
         </form>
     </div>
-
-  
     <script type="module" src="./scripts/pages/photographer.js"></script>
 </body>
 </html>

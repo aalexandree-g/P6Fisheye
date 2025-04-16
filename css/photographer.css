@@ -160,6 +160,7 @@ form #submit_button {
     padding: 50px;
     background-color: rgb(255, 255, 255);
     box-shadow: 0px 0px 20px rgb(218, 218, 218);
+    outline: none;
 }
 .lightbox_nav {
     display: flex;
@@ -167,7 +168,7 @@ form #submit_button {
     align-items: center;
     gap: 30px;
 }
-.lightbox_content .nav, .lightbox_content .close-btn {
+.lightbox_content .nav, .lightbox_content .lightbox_close-btn {
     border: none;
     background: none;
     font-size: 48px;
@@ -177,7 +178,7 @@ form #submit_button {
 .lightbox_content .nav.right {
     right: 50px;
 }
-.lightbox_content .close-btn {
+.lightbox_content .lightbox_close-btn {
     position: absolute;
     top: 30px;
     right: 40px;
@@ -193,11 +194,8 @@ form #submit_button {
 }
 .lightbox_nav img, video {
     max-width: 75vw;
-    max-height: 75vh;
+    max-height: 80vh;
     object-fit: contain;
-}
-.lightbox_nav video {
-    max-width: 75vw;
 }
 .lightbox_title {
     color: #901C1C;
@@ -220,7 +218,11 @@ form #submit_button {
     justify-content: space-between;
     width: 100%;
 }
-.modal header img {
+.modal .modal_close-btn {
+    border: none;
+    background: none;
+    font-size: 84px;
+    color: #ffffff;
     cursor: pointer;
 }
 .modal header h2 {

@@ -22,7 +22,7 @@ class PhotographerApp {
         // create modal
         new ContactForm(photographer)
         // create lightbox
-        new Lightbox(media)
+        new Lightbox(photographer, media)
     }
 }
 

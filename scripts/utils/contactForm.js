@@ -5,7 +5,7 @@ export default class ContactForm {
         this.$modal_title = document.getElementById("modal_title")
         this.$modal = document.querySelectorAll(".modal, .background")
         this.$contact_button = document.querySelector(".contact_button")
-        this.$close_icon = document.querySelector(".modal img")
+        this.$close_icon = document.querySelector(".modal_close-btn")
         this.$submit_button = document.getElementById("submit_button")
         this.init()
     }
@@ -37,7 +37,7 @@ export default class ContactForm {
         })
         // close modal
         document.addEventListener("click", (e) => {
-            if (e.target.matches(".modal img") || e.target.matches("body")) { this.closeModal() }
+            if (e.target.matches(".modal_close-btn") || e.target.matches("body")) { this.closeModal() }
         })
         // keypress to close modal
         document.addEventListener("keydown", (e) => {
