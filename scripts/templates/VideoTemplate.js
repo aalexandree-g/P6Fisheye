@@ -15,10 +15,10 @@ export default class VideoTemplate extends MediaTemplate {
         const thumbnailName = videoName.replace(/\.mp4$/, ".jpg")
 
         const $videoElement = document.createElement("article")
-        $videoElement.classList.add("media_card")
+        $videoElement.classList.add("media-card")
         $videoElement.id = this._id
         const videoElement = `
-            <img class="media_element" src="./assets/media/thumbnails/${thumbnailName}" alt="${this._title}, agrandir la vidéo" tabindex="0">
+            <img class="media-element" src="./assets/media/thumbnails/${thumbnailName}" alt="${this._title}, agrandir la vidéo" tabindex="0">
         `.trim()
         $videoElement.innerHTML = videoElement
         this.addMediaInfos($videoElement)
@@ -26,14 +26,14 @@ export default class VideoTemplate extends MediaTemplate {
     }
 
     createLightbox(mediaSrc) {
-        const $lightbox_media = document.getElementById("lightbox_media")
-        $lightbox_media.innerHTML = `
-            <video id="lightbox_video" controls autoplay>
-                <source class="lightbox_file" src="./assets/media/${this._photographerId}/${mediaSrc}" type="video/mp4">
+        const $lightboxMedia = document.getElementById("lightbox-media")
+        $lightboxMedia.innerHTML = `
+            <video id="lightbox-video" controls autoplay>
+                <source class="lightbox-file" src="./assets/media/${this._photographerId}/${mediaSrc}" type="video/mp4">
                 Votre navigateur ne supporte pas la vidéo.
             </video>
-            <span class="lightbox_title">${this._title}</span>
+            <span class="lightbox-title">${this._title}</span>
         `.trim()
-        return $lightbox_media
+        return $lightboxMedia
     }
 }

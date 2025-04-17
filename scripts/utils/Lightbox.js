@@ -4,7 +4,7 @@ export default class Lightbox {
         this._media = media
         this.$content = document.querySelector(".main-content")
         this.$lightbox = document.querySelectorAll(".lightbox, .background")
-        this.$close_icon = document.querySelector(".lightbox_close-btn")
+        this.$closeIcon = document.querySelector(".lightbox-close-btn")
         this.mediaSrc = this._media.map(element => element.getSrc())
         this.init()
     }
@@ -40,7 +40,7 @@ export default class Lightbox {
     }
 
     updateLightBox() {
-        document.getElementById("lightbox_media").innerHTML = ""
+        document.getElementById("lightbox-media").innerHTML = ""
         this._media[this.index].createLightbox(this.mediaSrc[this.index])     
     }
 
@@ -48,12 +48,12 @@ export default class Lightbox {
         // open lightbox
         this._media.forEach((media, index) => {
             const $media = document.getElementById(`${media.id}`)
-            $media.querySelector(".media_element").addEventListener("click", () => {
+            $media.querySelector(".media-element").addEventListener("click", () => {
                 media.createLightbox(this.mediaSrc[index])
                 this.displayLightbox(index)
             })
             // keypress to open lightbox
-            $media.querySelector(".media_element").addEventListener("keydown", (e) => {
+            $media.querySelector(".media-element").addEventListener("keydown", (e) => {
                 if ((
                     e.key === "Enter" ||
                     e.key === " ")
@@ -93,7 +93,7 @@ export default class Lightbox {
         // close lightbox
         document.addEventListener("click", (e) => {
             if (
-                e.target.matches(".lightbox .lightbox_close-btn") ||
+                e.target.matches(".lightbox .lightbox-close-btn") ||
                 e.target.matches("body")
             ) {
                 this.closeLightbox()
@@ -103,7 +103,7 @@ export default class Lightbox {
         document.addEventListener("keydown", (e) => {
             if (
                 e.key === "Escape" ||
-                ((e.key === "Enter" || e.key === " ") && document.activeElement === this.$close_icon)
+                ((e.key === "Enter" || e.key === " ") && document.activeElement === this.$closeIcon)
             ) {
                 e.preventDefault()
                 this.closeLightbox()

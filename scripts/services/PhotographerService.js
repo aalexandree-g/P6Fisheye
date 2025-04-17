@@ -22,7 +22,7 @@ export default class PhotographerService {
     }
 
     displayPhotographersCards(photographers) {
-        const $section = document.getElementById("photographer_section")
+        const $section = document.getElementById("photographer-section")
         photographers.forEach(photographer => {
             const card = new PhotographerTemplate(photographer).createPhotographerCard()
             $section.appendChild(card)
@@ -31,7 +31,7 @@ export default class PhotographerService {
     }
 
     displayPhotographerMedia(mediaList) {
-        const $section = document.getElementById("media_section")
+        const $section = document.getElementById("media-section")
         mediaList.forEach(media => {
             const mediaElement = media.createMedia()
             $section.appendChild(mediaElement)

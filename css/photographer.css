@@ -7,7 +7,7 @@
 
 
 /*** PHOTOGRAPHER HEADER ******/
-#photographer_header {
+#photographer-header {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -16,27 +16,27 @@
     height: 300px;
     padding: 0px 60px;
 }
-#photographer_header .text_content {
+#photographer-header .text-content {
     display: flex;
     flex-direction: column;
     gap: 15px;
 }
-#photographer_header .text_content h1 {
+#photographer-header .text-content h1 {
     color: #D3573C;
     font-size: 48px;
     font-weight: 100;
     margin: -10px 0px;
 }
-#photographer_header .text_content .location {
+#photographer-header .text-content .location {
     color: #901C1C;
     font-size: 20px;
 }
-#photographer_header .text_content .slogan {
+#photographer-header .text-content .slogan {
     font-size: 14px;
     color: #707070;
 }
-#photographer_header .contact_button,
-form #submit_button {
+#photographer-header .contact-button,
+form #submit-button {
     font-size: 20px;
     font-weight: bold;
     color: white;
@@ -48,7 +48,14 @@ form #submit_button {
     border-radius: 5px;
     cursor: pointer;
 }
-#photographer_header img {
+#photographer-header .contact-button:hover,
+#photographer-header .contact-button:focus,
+form #submit-button:hover,
+form #submit-button:focus {
+    background-color: #DB8876;
+    outline: solid 2px #ffffff;
+}
+#photographer-header img {
     height: 200px;
     width: 200px;
     border-radius: 50%;
@@ -57,7 +64,7 @@ form #submit_button {
 
 
 /*** MEDIA ******/
-#media_section {
+#media-section {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     gap: 30px;
@@ -67,19 +74,19 @@ form #submit_button {
     transform: scale(0);
     animation: media-reveal 600ms 500ms forwards;
 }
-#media_section img {
+#media-section img {
     display: block;
     height: 280px;
     width: 100%;
     object-fit: cover;
     margin: auto;
 }
-#media_section .media_card {
+#media-section .media-card {
     display: flex;
     flex-direction: column;
     gap: 7px;
 }
-#media_section .media_infos {
+#media-section .media-infos {
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
@@ -87,7 +94,7 @@ form #submit_button {
     color: #901C1C;
     font-size: 16px;
 }
-#media_section .likes_section {
+#media-section .likes-section {
     display: flex;
     flex-direction: row;
     justify-content: flex-end;
@@ -162,23 +169,23 @@ form #submit_button {
     box-shadow: 0px 0px 20px rgb(218, 218, 218);
     outline: none;
 }
-.lightbox_nav {
+.lightbox-nav {
     display: flex;
     justify-content: center;
     align-items: center;
     gap: 30px;
 }
-.lightbox_content .nav, .lightbox_content .lightbox_close-btn {
+.lightbox-content .nav, .lightbox-content .lightbox-close-btn {
     border: none;
     background: none;
     font-size: 48px;
     color: #901C1C;
     cursor: pointer;
 }
-.lightbox_content .nav.right {
+.lightbox-content .nav.right {
     right: 50px;
 }
-.lightbox_content .lightbox_close-btn {
+.lightbox-content .lightbox-close-btn {
     position: absolute;
     top: 30px;
     right: 40px;
@@ -186,18 +193,18 @@ form #submit_button {
     color: #901C1C;
     cursor: pointer;
 }
-#lightbox_media {
+#lightbox-media {
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
     gap: 7px;
 }
-.lightbox_nav img, video {
+.lightbox-nav img, video {
     max-width: 75vw;
     max-height: 80vh;
     object-fit: contain;
 }
-.lightbox_title {
+.lightbox-title {
     color: #901C1C;
     font-size: 16px;
 }
@@ -218,7 +225,7 @@ form #submit_button {
     justify-content: space-between;
     width: 100%;
 }
-.modal .modal_close-btn {
+.modal .modal-close-btn {
     border: none;
     background: none;
     font-size: 84px;
@@ -262,7 +269,7 @@ form input, textarea {
 form textarea {
     height: 120px;
 }
-form #submit_button {
+form #submit-button {
     margin-top: 20px;
 }
 

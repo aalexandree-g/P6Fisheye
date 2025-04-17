@@ -15,7 +15,7 @@ export default class PanelTemplate {
 
     updateLikes(media) {
         const $media = document.getElementById(`${media.id}`)
-        const $like_icon = $media.querySelector(".like_icon")
+        const $like_icon = $media.querySelector(".like-icon")
         if (!media.liked) {
             media.likes += 1
             media.liked = true
@@ -27,17 +27,17 @@ export default class PanelTemplate {
             $like_icon.classList.remove("fa-solid")
             $like_icon.classList.add("fa-regular")
         }
-        $media.querySelector(".media_likes").textContent = media.likes
-        document.querySelector(".total_likes").textContent = this.getTotalLikes()
+        $media.querySelector(".media-likes").textContent = media.likes
+        document.querySelector(".total-likes").textContent = this.getTotalLikes()
     }
 
     init() {
         this._media.forEach(media => {
             const $media = document.getElementById(`${media.id}`)
-            $media.querySelector(".likes_section").addEventListener("click", () => {
+            $media.querySelector(".likes-section").addEventListener("click", () => {
                 this.updateLikes(media)
             })
-            $media.querySelector(".likes_section").addEventListener("keydown", (e) => {
+            $media.querySelector(".likes-section").addEventListener("keydown", (e) => {
                 if (e.key === "Enter" || e.key === " ") {
                     e.preventDefault()
                     this.updateLikes(media)
@@ -48,7 +48,7 @@ export default class PanelTemplate {
         const totalLikes = this.getTotalLikes()
         $panel.innerHTML = `
             <div class="likes">
-                <span class="total_likes">${totalLikes}</span>
+                <span class="total-likes">${totalLikes}</span>
                 <i class="fa-solid fa-heart" aria-label="likes"></i>
             </div>
             <div class="price">

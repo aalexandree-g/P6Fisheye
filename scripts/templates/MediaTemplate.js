@@ -6,15 +6,15 @@ export default class MediaTemplate extends Media {
     }
 
     addMediaInfos($article) {
-        const $media_infos = document.createElement("div")
-        $media_infos.classList.add("media_infos")
-        $media_infos.innerHTML = `
-            <span class="media_title">${this._title}</span>
-            <div class="likes_section" tabindex="0">
-                <span class="media_likes">${this._likes}</span>
-                <i class="fa-regular fa-heart like_icon" aria-label="likes"></i>
+        const $mediaInfos = document.createElement("div")
+        $mediaInfos.classList.add("media-infos")
+        $mediaInfos.innerHTML = `
+            <span class="media-title">${this._title}</span>
+            <div class="likes-section" tabindex="0">
+                <span class="media-likes">${this._likes}</span>
+                <i class="fa-regular fa-heart like-icon" aria-label="likes"></i>
             </div>
         `
-        $article.appendChild($media_infos)
+        $article.appendChild($mediaInfos)
     }
 }

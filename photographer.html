@@ -18,10 +18,24 @@
             </a>
         </header>
         <main id="main">
-            <div id="photographer_header">
+            <div id="photographer-header">
                 <!-- templates are displayed here -->
             </div>
-            <div id="media_section">
+
+
+
+            <div class="dropdown-container">
+
+                <ul>
+                    <li>Popularité</li>
+                    <li>Popularité</li>
+                    <li>Titre</li>
+                </ul>
+
+            </div>
+
+
+            <div id="media-section">
                 <!-- templates are displayed here -->
             </div>
             <div id="panel">
@@ -29,44 +43,44 @@
             </div>
         </main>
     </div>
+    <div class="modal" role="dialog" aria-labelledby="modal-title">
+        <header>
+            <h2 id="modal-title">
+                <!-- Photographer's name is displayed here-->
+            </h2>
+            <button class="modal-close-btn" aria-label="Fermer la lightbox" tabindex="0">&times;</button>
+        </header>
+        <form id="mainForm" action="index.html" method="get">
+            <div class="formData">
+                <label id="firstname-label" for="firstname">Prénom</label>
+                <input type="text" id="firstname" name="firstname" aria-labelledby="firstname-label">
+            </div>
+            <div class="formData">
+                <label id="lastname-label" for="lastname">Nom</label>
+                <input type="text" id="lastname" name="lastname" aria-labelledby="lastname-label">
+            </div>
+            <div class="formData">
+                <label id="email-label" for="email">Email</label>
+                <input type="text" id="email" name="email" aria-labelledby="email-label">
+            </div>
+            <div class="formData">
+                <label id="message-label" for="message">Message</label>
+                <textarea type="text" id="message" name="message" aria-labelledby="message-label"></textarea>
+            </div>
+            <button id="submit-button" type="submit">Envoyer</button>
+        </form>
+    </div>
     <div class="lightbox" role="dialog" aria-label="Image en plein écran" tabindex="0">
-        <div class="lightbox_content">
-            <button class="lightbox_close-btn" aria-label="Fermer la lightbox" tabindex="0">&times;</button>
-            <div class="lightbox_nav">
+        <div class="lightbox-content">
+            <button class="lightbox-close-btn" aria-label="Fermer la lightbox" tabindex="0">&times;</button>
+            <div class="lightbox-nav">
                 <a class="nav left" aria-label="Aller au média précédent" tabindex="0">&#10094;</a>
-                <div id="lightbox_media">
+                <div id="lightbox-media">
                     <!-- templates are displayed here -->
                 </div>
                 <a class="nav right" aria-label="Aller au média suivant" tabindex="0">&#10095;</a>
             </div>
         </div>
-    </div>
-    <div class="modal" role="dialog" aria-labelledby="modal_title">
-        <header>
-            <h2 id="modal_title">
-                <!-- Photographer's name is displayed here-->
-            </h2>
-            <button class="modal_close-btn" aria-label="Fermer la lightbox" tabindex="0">&times;</button>
-        </header>
-        <form id="mainForm" action="index.html" method="get">
-            <div class="formData">
-                <label id="firstname_label" for="firstname">Prénom</label>
-                <input type="text" id="firstname" name="firstname" aria-labelledby="firstname_label">
-            </div>
-            <div class="formData">
-                <label id="lastname_label" for="lastname">Nom</label>
-                <input type="text" id="lastname" name="lastname" aria-labelledby="lastname_label">
-            </div>
-            <div class="formData">
-                <label id="email_label" for="email">Email</label>
-                <input type="text" id="email" name="email" aria-labelledby="email_label">
-            </div>
-            <div class="formData">
-                <label id="message_label" for="message">Message</label>
-                <textarea type="text" id="message" name="message" aria-labelledby="message_label"></textarea>
-            </div>
-            <button id="submit_button" type="submit">Envoyer</button>
-        </form>
     </div>
     <script type="module" src="./scripts/pages/photographer.js"></script>
 </body>

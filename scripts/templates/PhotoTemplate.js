@@ -12,21 +12,21 @@ export default class PhotoTemplate extends MediaTemplate {
 
     createMedia() {
         const $photoElement = document.createElement("article")
-        $photoElement.classList.add("media_card")
+        $photoElement.classList.add("media-card")
         $photoElement.id = this._id
         $photoElement.innerHTML = `
-            <img class="media_element" src="./assets/media/${this._photographerId}/${this._image}" alt="${this._title}, agrandir la photo" tabindex="0">
+            <img class="media-element" src="./assets/media/${this._photographerId}/${this._image}" alt="${this._title}, agrandir la photo" tabindex="0">
         `.trim()
         this.addMediaInfos($photoElement)
         return $photoElement
     }
 
     createLightbox(mediaSrc) {
-        const $lightbox_media = document.getElementById("lightbox_media")
-        $lightbox_media.innerHTML = `
-            <img class="lightbox_file" src="./assets/media/${this._photographerId}/${mediaSrc}" alt="${this._title}">
-            <span class="lightbox_title">${this._title}</span>
+        const $lightboxMedia = document.getElementById("lightbox-media")
+        $lightboxMedia.innerHTML = `
+            <img class="lightbox-file" src="./assets/media/${this._photographerId}/${mediaSrc}" alt="${this._title}">
+            <span class="lightbox-title">${this._title}</span>
         `.trim()
-        return $lightbox_media
+        return $lightboxMedia
     }
 }
