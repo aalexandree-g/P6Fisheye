@@ -71,15 +71,36 @@ form #submit-button:focus {
     width: 100%;
     margin-bottom: 150px;
     opacity: 0;
-    transform: scale(0);
-    animation: media-reveal 600ms 500ms forwards;
+    transform: scaleY(0);
+    transform-origin: top;
+    transition: all 600ms 500ms;
+}
+#media-section.showing {
+    opacity: 1;
+    transform: scaleY(1);
+    transform-origin: top;
+    transition: all 600ms 500ms;
+}
+#media-section.hiding {
+    opacity: 0;
+    transform: scaleY(0);
+}
+#media-section .media-container {
+    overflow: hidden;
 }
 #media-section img {
     display: block;
     height: 280px;
     width: 100%;
     object-fit: cover;
-    margin: auto;
+}
+#media-section .media-element.active {
+    transform: scale(1.10);
+    transition: transform 250ms ease-in-out;
+}
+#media-section .media-element.inactive {
+    transform: scale(1);
+    transition: transform 250ms ease-in-out;
 }
 #media-section .media-card {
     display: flex;
@@ -125,6 +146,29 @@ form #submit-button:focus {
     display: flex;
     align-items: center;
     gap: 10px;
+}
+
+
+/*** SORT DROPDOWN ******/
+.dropdown .sort-btn {
+    font-size: 20px;
+    font-weight: bold;
+    color: white;
+    padding: 11px;
+    width: 170px;
+    height: 70px;
+    border: none;
+    background-color: #901C1C;
+    border-radius: 5px;
+    cursor: pointer;
+}
+.dropdown .sort-btn:hover {
+    background-color: #DB8876;
+    outline: solid 2px #ffffff;
+}
+.dropdown .sort-btn:hover i {
+    transform: rotate(-180deg);
+    transition: transform 200ms ease-in-out;
 }
 
 

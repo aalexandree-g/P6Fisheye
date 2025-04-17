@@ -16,13 +16,13 @@ class PhotographerApp {
         const { photographer, media } = await this.service.getDataFromUrl()
         // display photographer and media
         new PhotographerTemplate(photographer).createPhotographerHeader()
-        this.service.displayPhotographerMedia(media)
+        this.service.displayPhotographerMedia(photographer, media)
         // display panel
-        new PanelTemplate(photographer, media)
+        new PanelTemplate(photographer, media).init()
         // create modal
-        new ContactForm(photographer)
+        new ContactForm(photographer).init()
         // create lightbox
-        new Lightbox(photographer, media)
+        new Lightbox(media).init()
     }
 }
 

@@ -6,9 +6,12 @@ export default class PhotographerTemplate {
     createPhotographerCard() {
         const $card = document.createElement("article")
         $card.classList.add("photographer-card")
+        $card.id = this._photographer.id
         $card.innerHTML = `
             <a href="photographer.html?id=${this._photographer.id}" aria-label="${this._photographer.name}">
-                <img src="./assets/photographers/${this._photographer.portrait}" alt="">
+                <div class="profile-picture">
+                    <img class="photographer-picture" src="./assets/photographers/${this._photographer.portrait}" alt="">
+                </div>
                 <h2>${this._photographer.name}</h2>
             </a>
             <span class="location" aria-label="Localisation : ${this._photographer.location}">

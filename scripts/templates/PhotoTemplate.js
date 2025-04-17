@@ -15,7 +15,9 @@ export default class PhotoTemplate extends MediaTemplate {
         $photoElement.classList.add("media-card")
         $photoElement.id = this._id
         $photoElement.innerHTML = `
-            <img class="media-element" src="./assets/media/${this._photographerId}/${this._image}" alt="${this._title}, agrandir la photo" tabindex="0">
+            <div class="media-container">
+                <img class="media-element" src="./assets/media/${this._photographerId}/${this._image}" alt="${this._title}, agrandir la photo" tabindex="0">
+            </div>
         `.trim()
         this.addMediaInfos($photoElement)
         return $photoElement

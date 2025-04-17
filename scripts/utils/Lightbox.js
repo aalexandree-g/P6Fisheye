@@ -1,12 +1,11 @@
 import PhotoTemplate from "../templates/PhotoTemplate.js"
 export default class Lightbox {
-    constructor(photographer, media) {
+    constructor(media) {
         this._media = media
         this.$content = document.querySelector(".main-content")
         this.$lightbox = document.querySelectorAll(".lightbox, .background")
         this.$closeIcon = document.querySelector(".lightbox-close-btn")
         this.mediaSrc = this._media.map(element => element.getSrc())
-        this.init()
     }
 
     displayLightbox(index) {
@@ -44,7 +43,7 @@ export default class Lightbox {
         this._media[this.index].createLightbox(this.mediaSrc[this.index])     
     }
 
-    init() {
+    setupClickEvents() {
         // open lightbox
         this._media.forEach((media, index) => {
             const $media = document.getElementById(`${media.id}`)
@@ -52,7 +51,27 @@ export default class Lightbox {
                 media.createLightbox(this.mediaSrc[index])
                 this.displayLightbox(index)
             })
-            // keypress to open lightbox
+        })
+
+        // change media
+        document.querySelector(".left").addEventListener("click", () => { this.showPreviousMedia() })
+        document.querySelector(".right").addEventListener("click", () => { this.showNextMedia() })
+
+        // close lightbox
+        document.addEventListener("click", (e) => {
+            if (
+                e.target.matches(".lightbox .lightbox-close-btn") ||
+                e.target.matches("body")
+            ) {
+                this.closeLightbox()
+            }
+        })
+    }
+
+    setupKeydownEvents() {
+        // open lightbox
+        this._media.forEach((media, index) => {
+            const $media = document.getElementById(`${media.id}`)
             $media.querySelector(".media-element").addEventListener("keydown", (e) => {
                 if ((
                     e.key === "Enter" ||
@@ -62,12 +81,10 @@ export default class Lightbox {
                     media.createLightbox(this.mediaSrc[index])
                     this.displayLightbox(index)
                 }
-            })    
+            })
         })
+
         // change media
-        document.querySelector(".left").addEventListener("click", () => { this.showPreviousMedia() })
-        document.querySelector(".right").addEventListener("click", () => { this.showNextMedia() })
-        // keypress to change media
         document.querySelector(".lightbox").addEventListener("keydown", (e) => {
             if (e.key === "ArrowLeft") { this.showPreviousMedia() }
             else if (e.key === "ArrowRight") { this.showNextMedia() }
@@ -90,16 +107,8 @@ export default class Lightbox {
                 this.showNextMedia()
             }
         })
+
         // close lightbox
-        document.addEventListener("click", (e) => {
-            if (
-                e.target.matches(".lightbox .lightbox-close-btn") ||
-                e.target.matches("body")
-            ) {
-                this.closeLightbox()
-            }
-        })
-        // keypress to close lightbox
         document.addEventListener("keydown", (e) => {
             if (
                 e.key === "Escape" ||
@@ -109,5 +118,14 @@ export default class Lightbox {
                 this.closeLightbox()
             }
         })
+    }
+
+    setupEventListeners() {
+        this.setupClickEvents()
+        this.setupKeydownEvents()
+    }
+
+    init() {
+        this.setupEventListeners()    
     }
 }

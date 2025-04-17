@@ -2,7 +2,7 @@ export default class PanelTemplate {
     constructor(photographer, media) {
         this._photographer = photographer
         this._media = media
-        this.init()
+        //this.init()
     }
 
     getTotalLikes() {
@@ -15,35 +15,23 @@ export default class PanelTemplate {
 
     updateLikes(media) {
         const $media = document.getElementById(`${media.id}`)
-        const $like_icon = $media.querySelector(".like-icon")
+        const $likeIcon = $media.querySelector(".like-icon")
         if (!media.liked) {
             media.likes += 1
             media.liked = true
-            $like_icon.classList.remove("fa-regular")
-            $like_icon.classList.add("fa-solid")
+            $likeIcon.classList.remove("fa-regular")
+            $likeIcon.classList.add("fa-solid")
         } else {
             media.likes -= 1
             media.liked = false
-            $like_icon.classList.remove("fa-solid")
-            $like_icon.classList.add("fa-regular")
+            $likeIcon.classList.remove("fa-solid")
+            $likeIcon.classList.add("fa-regular")
         }
         $media.querySelector(".media-likes").textContent = media.likes
         document.querySelector(".total-likes").textContent = this.getTotalLikes()
     }
 
-    init() {
-        this._media.forEach(media => {
-            const $media = document.getElementById(`${media.id}`)
-            $media.querySelector(".likes-section").addEventListener("click", () => {
-                this.updateLikes(media)
-            })
-            $media.querySelector(".likes-section").addEventListener("keydown", (e) => {
-                if (e.key === "Enter" || e.key === " ") {
-                    e.preventDefault()
-                    this.updateLikes(media)
-                }
-            })
-        })
+    displayPanel() {
         const $panel = document.getElementById("panel")
         const totalLikes = this.getTotalLikes()
         $panel.innerHTML = `
@@ -56,5 +44,36 @@ export default class PanelTemplate {
             </div>
         `.trim()
         return $panel
+    }
+
+    setupClickEvents() {
+        this._media.forEach(media => {
+            const $media = document.getElementById(`${media.id}`)
+            $media.querySelector(".likes-section").addEventListener("click", () => {
+                this.updateLikes(media)
+            })
+        })
+    }
+
+    setupKeydownEvents() {
+        this._media.forEach(media => {
+            const $media = document.getElementById(`${media.id}`)
+            $media.querySelector(".likes-section").addEventListener("keydown", (e) => {
+                if (e.key === "Enter" || e.key === " ") {
+                    e.preventDefault()
+                    this.updateLikes(media)
+                }
+            })
+        })
+    }
+
+    setupEventListeners() {
+        this.setupClickEvents()
+        this.setupKeydownEvents()
+    }
+
+    init() {
+        this.setupEventListeners()
+        this.displayPanel()
     }
 }
