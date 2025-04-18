@@ -84,10 +84,9 @@ export default class PhotographerService {
                     return b.likes - a.likes
                 })
                 displayMedia(mediaList)
-                new PanelTemplate(photographer, mediaList).init()
-                
+                new PanelTemplate(photographer, mediaList).setupEventListeners()
                 new Lightbox(mediaList).setupEventListeners()
-            }, 1100)
+            }, 500)
         })   
     }
 }

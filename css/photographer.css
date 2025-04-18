@@ -73,13 +73,11 @@ form #submit-button:focus {
     opacity: 0;
     transform: scaleY(0);
     transform-origin: top;
-    transition: all 600ms 500ms;
+    transition: all 500ms;
 }
 #media-section.showing {
     opacity: 1;
     transform: scaleY(1);
-    transform-origin: top;
-    transition: all 600ms 500ms;
 }
 #media-section.hiding {
     opacity: 0;
@@ -140,7 +138,7 @@ form #submit-button:focus {
     font-size: 20px;
     background-color: #DB8876;
     transform: scale(0);
-    animation: panel-reveal 250ms 1200ms ease-in-out forwards;
+    animation: panel-reveal 250ms 600ms ease-in-out forwards;
 }
 #panel .likes {
     display: flex;
