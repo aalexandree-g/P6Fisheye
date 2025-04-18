@@ -1,8 +1,9 @@
+import MediaTemplate from "./MediaTemplate.js"
+
 export default class PanelTemplate {
     constructor(photographer, media) {
         this._photographer = photographer
         this._media = media
-        //this.init()
     }
 
     getTotalLikes() {
@@ -11,24 +12,6 @@ export default class PanelTemplate {
             totalLikes += m.likes
         })
         return totalLikes
-    }
-
-    updateLikes(media) {
-        const $media = document.getElementById(`${media.id}`)
-        const $likeIcon = $media.querySelector(".like-icon")
-        if (!media.liked) {
-            media.likes += 1
-            media.liked = true
-            $likeIcon.classList.remove("fa-regular")
-            $likeIcon.classList.add("fa-solid")
-        } else {
-            media.likes -= 1
-            media.liked = false
-            $likeIcon.classList.remove("fa-solid")
-            $likeIcon.classList.add("fa-regular")
-        }
-        $media.querySelector(".media-likes").textContent = media.likes
-        document.querySelector(".total-likes").textContent = this.getTotalLikes()
     }
 
     displayPanel() {
@@ -50,7 +33,8 @@ export default class PanelTemplate {
         this._media.forEach(media => {
             const $media = document.getElementById(`${media.id}`)
             $media.querySelector(".likes-section").addEventListener("click", () => {
-                this.updateLikes(media)
+                new MediaTemplate(media).updateLikes()
+                document.querySelector(".total-likes").textContent = this.getTotalLikes()
             })
         })
     }
@@ -61,7 +45,8 @@ export default class PanelTemplate {
             $media.querySelector(".likes-section").addEventListener("keydown", (e) => {
                 if (e.key === "Enter" || e.key === " ") {
                     e.preventDefault()
-                    this.updateLikes(media)
+                    new MediaTemplate(media).updateLikes()
+                    document.querySelector(".total-likes").textContent = this.getTotalLikes()
                 }
             })
         })

@@ -72,21 +72,23 @@ export default class PhotographerService {
             $section.classList.add("showing")
         }
 
-        displayMedia(mediaList)
-
-        const boutonTrier = document.querySelector(".sort-btn")
-        boutonTrier.addEventListener("click", () => {
-            
+        function sortAndDisplay(type) {
             $section.classList.add("hiding")
             setTimeout(() => {
                 $section.classList.remove("hiding")
-                mediaList.sort(function (a, b) {
-                    return b.likes - a.likes
-                })
+                if (type === "popularity") {
+                    mediaList.sort( (a, b) => b.likes - a.likes)
+                } else if (type === "title") {
+                    mediaList.sort((a, b) => a.title.localeCompare(b.title, 'en', { sensitivity: 'base' }))
+                }
                 displayMedia(mediaList)
                 new PanelTemplate(photographer, mediaList).setupEventListeners()
                 new Lightbox(mediaList).setupEventListeners()
             }, 500)
-        })   
+        }
+
+        displayMedia(mediaList)
+        document.querySelector(".popularity").addEventListener("click", () => { sortAndDisplay("popularity") })
+        document.querySelector(".title").addEventListener("click", () => { sortAndDisplay("title") })
     }
 }
