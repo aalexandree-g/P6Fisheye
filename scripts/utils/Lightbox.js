@@ -1,4 +1,5 @@
-import PhotoTemplate from "../templates/PhotoTemplate.js"
+import { changeClass } from "./helper.js"
+
 export default class Lightbox {
     constructor(media) {
         this._media = media
@@ -19,8 +20,7 @@ export default class Lightbox {
 
     closeLightbox() {
         this.$lightbox.forEach(element => {
-            element.classList.remove("showing")
-            element.classList.add("hiding")
+            changeClass(element, "hiding", "showing")
             setTimeout(() => {
                 element.classList.remove("visible", "hiding")
             }, 250)

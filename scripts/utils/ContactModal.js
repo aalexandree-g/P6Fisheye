@@ -1,4 +1,6 @@
-export default class ContactForm {
+import { changeClass } from "./helper.js"
+
+export default class ContactModal {
     constructor(photographer) {
         this._photographer = photographer
         this.$content = document.querySelector(".main-content")
@@ -19,8 +21,7 @@ export default class ContactForm {
 
     closeModal() {
         this.$modal.forEach(element => {
-            element.classList.remove("showing")
-            element.classList.add("hiding")
+            changeClass(element, "hiding", "showing")
             setTimeout(() => {
                 this.$modalTitle.textContent = ""
                 element.classList.remove("visible", "hiding")

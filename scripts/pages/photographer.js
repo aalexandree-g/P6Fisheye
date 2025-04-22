@@ -2,7 +2,7 @@ import PhotographersApi from "../utils/PhotographersApi.js"
 import PhotographerService from "../services/PhotographerService.js"
 import PhotographerTemplate from "../templates/PhotographerTemplate.js"
 import PanelTemplate from "../templates/PanelTemplate.js"
-import ContactForm from "../utils/ContactForm.js"
+import ContactModal from "../utils/ContactModal.js"
 import Lightbox from "../utils/Lightbox.js"
 
 class PhotographerApp {
@@ -20,7 +20,7 @@ class PhotographerApp {
         // display panel
         new PanelTemplate(photographer, media).init()
         // create modal
-        new ContactForm(photographer).init()
+        new ContactModal(photographer).init()
         // create lightbox
         new Lightbox(media).init()
     }

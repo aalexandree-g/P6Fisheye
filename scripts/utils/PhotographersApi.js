@@ -1,7 +1,7 @@
-import Api from "./Api.js"
+import ApiService from "./ApiService.js"
 import Photographer from "../models/Photographer.js"
 
-export default class PhotographersApi extends Api {
+export default class PhotographersApi extends ApiService {
     constructor(url) {
         super(url)
     }

@@ -2,6 +2,7 @@ import MediaFactory from "../factories/MediaFactory.js"
 import PanelTemplate from "../templates/PanelTemplate.js"
 import PhotographerTemplate from "../templates/PhotographerTemplate.js"
 import Lightbox from "../utils/Lightbox.js"
+import { changeClass } from "../utils/helper.js"
 
 export default class PhotographerService {
     constructor(api) {
@@ -30,13 +31,12 @@ export default class PhotographerService {
             $section.appendChild(card)
             // hover animations
             const $photographer = document.getElementById(`${photographer.id}`)
+            const $photographerPicture = $photographer.querySelector(".photographer-picture")
             $photographer.addEventListener("mouseenter", () => {
-                $photographer.querySelector(".photographer-picture").classList.add("active")
-                $photographer.querySelector(".photographer-picture").classList.remove("inactive")
+                changeClass($photographerPicture, "active", "inactive")
             })
             $photographer.addEventListener("mouseleave", () => {
-                $photographer.querySelector(".photographer-picture").classList.add("inactive")
-                $photographer.querySelector(".photographer-picture").classList.remove("active")
+                changeClass($photographerPicture, "inactive", "active")
             })
         })
         return $section
@@ -44,6 +44,10 @@ export default class PhotographerService {
 
     displayPhotographerMedia(photographer, mediaList) {
         const $section = document.getElementById("media-section")
+        const $buttons = document.querySelectorAll(".sort-btn")
+        const $noChoiceBtn = document.querySelector(".noChoice")
+        const $popularityBtn = document.querySelector(".popularity")
+        const $titleBtn = document.querySelector(".title")
 
         function displayMedia(mediaList) {
             $section.innerHTML = ""
@@ -52,22 +56,15 @@ export default class PhotographerService {
                 $section.appendChild(mediaElement)
                 // hover animations
                 const $media = document.getElementById(`${media.id}`)
+                const $mediaElement = $media.querySelector(".media-element")
                 const $likeIcon = $media.querySelector(".like-icon")
                 if (media.liked) {
-                    $likeIcon.classList.remove("fa-regular")
-                    $likeIcon.classList.add("fa-solid")
+                    changeClass($likeIcon, "fa-solid", "fa-regular")
                 } else {
-                    $likeIcon.classList.remove("fa-solid")
-                    $likeIcon.classList.add("fa-regular")
+                    changeClass($likeIcon, "fa-regular", "fa-solid")
                 }
-                $media.addEventListener("mouseenter", () => {
-                    $media.querySelector(".media-element").classList.add("active")
-                    $media.querySelector(".media-element").classList.remove("inactive")
-                })
-                $media.addEventListener("mouseleave", () => {
-                    $media.querySelector(".media-element").classList.add("inactive")
-                    $media.querySelector(".media-element").classList.remove("active")
-                })
+                $media.addEventListener("mouseenter", () => { changeClass($mediaElement, "active", "inactive") })
+                $media.addEventListener("mouseleave", () => { changeClass($mediaElement, "inactive", "active") })
             })
             $section.classList.add("showing")
         }
@@ -87,8 +84,37 @@ export default class PhotographerService {
             }, 500)
         }
 
+        function btnEvent(type) {
+            const $activeBtn = type === "popularity" ? $popularityBtn : $titleBtn
+            const $inactiveBtn = type === "popularity" ? $titleBtn : $popularityBtn
+            const direction = type === "popularity" ? "column" : "column-reverse"
+
+            if (!$inactiveBtn.classList.contains("visible")) {
+                changeClass($inactiveBtn, "visible", "hidden")
+                $noChoiceBtn.classList.add("hidden")
+                document.querySelector(".buttons").style.flexDirection = direction
+            } else {
+                changeClass($inactiveBtn, "hidden", "visible")
+                changeClass($noChoiceBtn, "hidden", "visible")
+                changeClass($activeBtn, "visible", "hidden")
+                sortAndDisplay(type)
+            }
+        }
+
         displayMedia(mediaList)
-        document.querySelector(".popularity").addEventListener("click", () => { sortAndDisplay("popularity") })
-        document.querySelector(".title").addEventListener("click", () => { sortAndDisplay("title") })
+
+        $noChoiceBtn.addEventListener("click", () => {
+            $buttons.forEach($button => {
+                if (!$button.classList.contains("visible")) {
+                    changeClass($button, "visible", "hidden")
+                } else {
+                    changeClass($button, "hidden", "visible")
+                    changeClass($noChoiceBtn, "visible", "hidden")
+                }
+            })
+        })
+
+        $popularityBtn.addEventListener("click", () => { btnEvent("popularity") })
+        $titleBtn.addEventListener("click", () => { btnEvent("title") })
     }
 }

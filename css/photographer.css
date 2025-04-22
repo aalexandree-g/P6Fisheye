@@ -150,16 +150,35 @@ form #submit-button:focus {
 /*** SORT DROPDOWN ******/
 .dropdown {
     display: flex;
-    align-items: center;
     gap: 30px;
+    position: relative;
+    width: 100px;
+    height: 70px;
+}
+.dropdown label {
+    padding-top: 25px;
+    font-size: 20px;
+    font-weight: bold;
 }
 .dropdown .buttons {
     display: flex;
     flex-direction: column;
+    justify-content: center;
     gap: 1px;
+    position: absolute;
+    left: 100px;
+    z-index: 99;
     border-radius: 5px;
     overflow: hidden;
-    background-color: white;
+    background: linear-gradient(
+        to right,
+        #901C1C 0%,
+        #901C1C 9%,
+        white 9%,
+        white 91%,
+        #901C1C 91%,
+        #901C1C 100%
+    );
 }
 .dropdown .sort-btn {
     display: flex;
@@ -168,13 +187,21 @@ form #submit-button:focus {
     font-size: 20px;
     font-weight: bold;
     color: white;
-    padding: 11px 25px;
+    padding: 11px 22px;
     width: 200px;
     height: 70px;
     border: none;
     background-color: #901C1C;
-    
     cursor: pointer;
+}
+.dropdown i {
+    position: absolute;
+    top: 25px;
+    right: 22px;
+    font-size: 20px;
+    font-weight: bold;
+    color: white;
+    pointer-events: none;
 }
 .dropdown .sort-btn:hover {
     background-color: #DB8876;
@@ -182,6 +209,12 @@ form #submit-button:focus {
 .dropdown .sort-btn:hover i {
     transform: rotate(-180deg);
     transition: transform 200ms ease-in-out;
+}
+.dropdown .sort-btn.visible {
+    display: flex;
+}
+.dropdown .sort-btn.hidden {
+    display: none;
 }
 
 

@@ -1,4 +1,5 @@
 import Media from "../models/Media.js"
+import { changeClass } from "../utils/helper.js"
 
 export default class MediaTemplate extends Media {
     constructor(media) {
@@ -12,13 +13,11 @@ export default class MediaTemplate extends Media {
         if (!this._media.liked) {
             this._media.likes += 1
             this._media.liked = true
-            $likeIcon.classList.remove("fa-regular")
-            $likeIcon.classList.add("fa-solid")
+            changeClass($likeIcon, "fa-solid", "fa-regular")
         } else {
             this._media.likes -= 1
             this._media.liked = false
-            $likeIcon.classList.remove("fa-solid")
-            $likeIcon.classList.add("fa-regular")
+            changeClass($likeIcon, "fa-regular", "fa-solid")
         }
         $media.querySelector(".media-likes").textContent = this._media.likes
     }
