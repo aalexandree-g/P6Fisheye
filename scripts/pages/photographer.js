@@ -3,7 +3,9 @@ import PhotographerService from "../services/PhotographerService.js"
 import PhotographerTemplate from "../templates/PhotographerTemplate.js"
 import PanelTemplate from "../templates/PanelTemplate.js"
 import ContactModal from "../utils/ContactModal.js"
+
 import Lightbox from "../utils/Lightbox.js"
+import Dropdown from "../utils/Dropdown.js"
 
 class PhotographerApp {
     constructor() {

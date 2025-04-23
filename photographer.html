@@ -12,7 +12,7 @@
 <body>
     <div class="main-content">
         <div class="background"></div>
-        <header role="banner">
+        <header>
             <a href="./index.html">
                 <img src="./assets/images/logo.png" class="logo" alt="Fisheye Home page">
             </a>
@@ -22,9 +22,9 @@
                 <!-- templates are displayed here -->
             </div>
             <div class="dropdown">
-                <label id="sort-label">Trier par</label>
+                <span id="sort-label">Trier par</span>
                 <div class="buttons" role="listbox" aria-labelledby="sort-label">
-                    <button class="sort-btn noChoice visible" role="option" aria-selected="true" aria-haspopup="true" aria-expanded="false">
+                    <button class="sort-btn noChoice visible" role="option" aria-selected="true" aria-haspopup="true">
                         <span>--</span>
                     </button>
                     <button class="sort-btn popularity hidden" role="option" aria-selected="false">
@@ -47,6 +47,7 @@
     <div class="modal" role="dialog" aria-labelledby="modal-title">
         <header>
             <h2 id="modal-title">
+                Contact photographer
                 <!-- Photographer's name is displayed here-->
             </h2>
             <button class="modal-close-btn" aria-label="Fermer la lightbox" tabindex="0">&times;</button>
@@ -66,7 +67,7 @@
             </div>
             <div class="formData">
                 <label id="message-label" for="message">Message</label>
-                <textarea type="text" id="message" name="message" aria-labelledby="message-label"></textarea>
+                <textarea id="message" name="message" aria-labelledby="message-label"></textarea>
             </div>
             <button id="submit-button" type="submit">Envoyer</button>
         </form>

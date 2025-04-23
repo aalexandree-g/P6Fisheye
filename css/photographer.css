@@ -160,8 +160,8 @@ form #submit-button {
     width: 100px;
     height: 70px;
 }
-.dropdown label {
-    padding-top: 25px;
+.dropdown #sort-label {
+    padding-top: 22px;
     font-size: 20px;
     font-weight: bold;
 }
@@ -184,7 +184,7 @@ form #submit-button {
         #901C1C 91%,
         #901C1C 100%
     );
-}
+  }
 .dropdown .sort-btn {
     display: flex;
     justify-content: space-between;
@@ -211,9 +211,12 @@ form #submit-button {
 .dropdown .sort-btn:hover {
     background-color: #DB8876;
 }
-.dropdown .sort-btn:hover i {
-    transform: rotate(-180deg);
+.dropdown i {
+    transform: rotate(0deg);
     transition: transform 200ms ease-in-out;
+}
+.dropdown .rotate {
+    transform: rotate(-180deg);
 }
 .dropdown .sort-btn.visible {
     display: flex;
