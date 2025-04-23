@@ -18,8 +18,8 @@ export default class VideoTemplate extends MediaTemplate {
         $videoElement.classList.add("media-card")
         $videoElement.id = this._id
         const videoElement = `
-            <div class="media-container">
-                <img class="media-element" src="./assets/media/thumbnails/${thumbnailName}" alt="${this._title}, agrandir la vidéo" tabindex="0">
+            <div class="media-container" tabindex="0">
+                <img class="media-element" src="./assets/media/thumbnails/${thumbnailName}" alt="${this._title}, agrandir la vidéo">
             </div>
         `.trim()
         $videoElement.innerHTML = videoElement

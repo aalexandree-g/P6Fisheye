@@ -28,6 +28,7 @@ export default class ContactModal {
             }, 250)
         })
         this.$content.removeAttribute("inert")
+        document.querySelector(".contact-button").focus()
     }
 
     setupClickEvents() {
@@ -49,6 +50,7 @@ export default class ContactModal {
             const emailInput = document.getElementById("email").value
             const messageInput = document.getElementById("message").value
             console.log(`Les données invalides ne sont pas vérifiées.\nPrénom : ${firstnameInput}\nNom : ${lastnameInput}\nEmail : ${emailInput}\nMessage : ${messageInput}`)
+            document.querySelector(".modal-close-btn").focus()
         })
     }
 

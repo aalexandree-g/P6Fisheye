@@ -26,6 +26,7 @@ export default class Lightbox {
             }, 250)
         })
         this.$content.removeAttribute("inert")
+        document.querySelector(".media-container").focus()
     }
 
     showPreviousMedia() {
@@ -51,6 +52,10 @@ export default class Lightbox {
                 media.createLightbox(this.mediaSrc[index])
                 this.displayLightbox(index)
             })
+            $media.querySelector(".media-title").addEventListener("click", () => {
+                media.createLightbox(this.mediaSrc[index])
+                this.displayLightbox(index)
+            })
         })
 
         // change media
@@ -72,7 +77,7 @@ export default class Lightbox {
         // open lightbox
         this._media.forEach((media, index) => {
             const $media = document.getElementById(`${media.id}`)
-            $media.querySelector(".media-element").addEventListener("keydown", (e) => {
+            $media.querySelector(".media-container").addEventListener("keydown", (e) => {
                 if ((
                     e.key === "Enter" ||
                     e.key === " ")

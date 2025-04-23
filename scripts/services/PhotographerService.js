@@ -93,10 +93,25 @@ export default class PhotographerService {
                 changeClass($inactiveBtn, "visible", "hidden")
                 $noChoiceBtn.classList.add("hidden")
                 document.querySelector(".buttons").style.flexDirection = direction
+                $activeBtn.setAttribute("aria-expanded", "true")
+                
             } else {
                 changeClass($inactiveBtn, "hidden", "visible")
                 changeClass($noChoiceBtn, "hidden", "visible")
                 changeClass($activeBtn, "visible", "hidden")
+
+                $noChoiceBtn.removeAttribute("aria-haspopup")
+                $noChoiceBtn.removeAttribute("aria-expanded")
+                $noChoiceBtn.setAttribute("aria-selected", "false")
+
+                $activeBtn.setAttribute("aria-haspopup", "true")
+                $activeBtn.setAttribute("aria-expanded", "false")
+                $activeBtn.setAttribute("aria-selected", "true")
+
+                $inactiveBtn.removeAttribute("aria-haspopup")
+                $inactiveBtn.removeAttribute("aria-expanded")
+                $inactiveBtn.setAttribute("aria-selected", "false")
+
                 sortAndDisplay(type)
             }
         }
@@ -107,9 +122,13 @@ export default class PhotographerService {
             $buttons.forEach($button => {
                 if (!$button.classList.contains("visible")) {
                     changeClass($button, "visible", "hidden")
+                    $noChoiceBtn.setAttribute("aria-expanded", "true")
+                    $noChoiceBtn.setAttribute("aria-selected", "true")
                 } else {
                     changeClass($button, "hidden", "visible")
                     changeClass($noChoiceBtn, "visible", "hidden")
+                    $noChoiceBtn.setAttribute("aria-expanded", "false")
+                    $noChoiceBtn.setAttribute("aria-selected", "true")
                 }
             })
         })

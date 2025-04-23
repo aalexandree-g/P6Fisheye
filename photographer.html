@@ -21,25 +21,21 @@
             <div id="photographer-header">
                 <!-- templates are displayed here -->
             </div>
-
-
             <div class="dropdown">
-                <label>Trier par</label>
-                <div class="buttons">
-                    <button class="sort-btn noChoice visible">
+                <label id="sort-label">Trier par</label>
+                <div class="buttons" role="listbox" aria-labelledby="sort-label">
+                    <button class="sort-btn noChoice visible" role="option" aria-selected="true" aria-haspopup="true" aria-expanded="false">
                         <span>--</span>
                     </button>
-                    <button class="sort-btn popularity hidden">
+                    <button class="sort-btn popularity hidden" role="option" aria-selected="false">
                         <span>Popularité</span>
                     </button>
-                    <button class="sort-btn title hidden">
+                    <button class="sort-btn title hidden" role="option" aria-selected="false">
                         <span>Titre</span>
                     </button>
-                    <i class="fa-solid fa-chevron-down"></i>
+                    <i class="fa-solid fa-chevron-down" aria-hidden="true"></i>
                 </div>
             </div>
-
-
             <div id="media-section">
                 <!-- templates are displayed here -->
             </div>
