@@ -1,0 +1,27 @@
+{
+  "name": "p6fisheye",
+  "version": "1.0.0",
+  "description": "## Démarrer le projet",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "http-server",
+    "lint": "eslint . --ext .js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/aalexandree-g/P6Fisheye.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/aalexandree-g/P6Fisheye/issues"
+  },
+  "homepage": "https://github.com/aalexandree-g/P6Fisheye#readme",
+  "devDependencies": {
+    "@eslint/js": "^9.25.1",
+    "eslint": "^9.25.1",
+    "globals": "^16.0.0"
+  }
+}

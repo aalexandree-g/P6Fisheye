@@ -358,11 +358,13 @@ form #submit-button:focus-visible {
 }
 #photographer-header .contact-button:focus-visible,
 form #submit-button:focus-visible,
-.modal-close-btn:focus-visible,
-.formData input:focus-visible,
-.formData textarea:focus-visible {
+.modal-close-btn:focus-visible {
     outline: solid 1px #26ce00;
     box-shadow: inset 0 0 0 5px #26ce00;
+}
+.formData input:focus-visible,
+.formData textarea:focus-visible {
+    outline: solid 4px #901C1C;
 }
 
 

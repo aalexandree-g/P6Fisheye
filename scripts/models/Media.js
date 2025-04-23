@@ -17,7 +17,7 @@ export default class Media {
 
     get likes() { return this._likes }
 
-    set likes(newLikes) { return this._likes = newLikes}
+    set likes(newLikes) { this._likes = newLikes}
 
     get date() { return this._date }
 

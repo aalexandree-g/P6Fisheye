@@ -1,4 +1,3 @@
-import PhotographerService from "../services/PhotographerService.js"
 import PanelTemplate from "../templates/PanelTemplate.js"
 import Lightbox from "./Lightbox.js"
 import { changeClass } from "./helper.js"
