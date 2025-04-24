@@ -31,22 +31,21 @@ export default class Lightbox {
 
     showPreviousMedia() {
         this.index = (this.index - 1 + this.mediaSrc.length) % this.mediaSrc.length
-        this.updateLightBox()
+        this.updateLightbox()
     }
 
     showNextMedia() {
         this.index = (this.index + 1) % this.mediaSrc.length
-        this.updateLightBox()
+        this.updateLightbox()
     }
 
-    updateLightBox() {
+    updateLightbox() {
         document.getElementById("lightbox-media").innerHTML = ""
-        this._media[this.index].createLightbox(this.mediaSrc[this.index])     
+        this._media[this.index].createLightbox(this.mediaSrc[this.index])
     }
 
     // all click events
     setupClickEvents() {
-
         // open lightbox
         this._media.forEach((media, index) => {
             const $media = document.getElementById(`${media.id}`)
@@ -59,11 +58,9 @@ export default class Lightbox {
                 this.displayLightbox(index)
             })
         })
-
         // change media
         this.$leftArrow.addEventListener("click", () => { this.showPreviousMedia() })
         this.$rightArrow.addEventListener("click", () => { this.showNextMedia() })
-
         // close lightbox
         document.addEventListener("click", (e) => {
             if (
@@ -73,7 +70,6 @@ export default class Lightbox {
                 this.closeLightbox()
             }
         })
-
         // trap focus inside the lightbox
         this.$rightArrow.addEventListener("keydown", (e) => {
             if (e.key === "Tab" && !e.shiftKey) {
@@ -87,7 +83,6 @@ export default class Lightbox {
                 this.$rightArrow.focus()
             }
         })
-
     }
 
     setupKeydownEvents() {
@@ -105,7 +100,6 @@ export default class Lightbox {
                 }
             })
         })
-
         // change media
         document.querySelector(".lightbox").addEventListener("keydown", (e) => {
             if (e.key === "ArrowLeft") { this.showPreviousMedia() }
@@ -129,7 +123,6 @@ export default class Lightbox {
                 this.showNextMedia()
             }
         })
-
         // close lightbox
         document.addEventListener("keydown", (e) => {
             if (
