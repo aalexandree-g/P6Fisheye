@@ -1,5 +1,3 @@
-import { changeClass } from "./helper.js"
-
 export default class ContactModal {
     constructor(photographer) {
         this._photographer = photographer
@@ -21,7 +19,7 @@ export default class ContactModal {
 
     closeModal() {
         this.$modal.forEach(element => {
-            changeClass(element, "hiding", "showing")
+            element.classList.replace("showing", "hiding")
             setTimeout(() => {
                 this.$modalTitle.textContent = ""
                 element.classList.remove("visible", "hiding")
@@ -31,17 +29,16 @@ export default class ContactModal {
         document.querySelector(".contact-button").focus()
     }
 
+    // all click events
     setupClickEvents() {
         // open modal
         this.$contactButton.addEventListener("click", () => {
             this.displayModal()
         })
-
         // close modal
         document.addEventListener("click", (e) => {
             if (e.target.matches(".modal-close-btn") || e.target.matches("body")) { this.closeModal() }
         })
-
         // submit form
         this.$submitButton.addEventListener("click", (e) => {
             e.preventDefault()
@@ -54,6 +51,7 @@ export default class ContactModal {
         })
     }
 
+    // all keyboard events
     setupKeydownEvents() {
         // close modal
         document.addEventListener("keydown", (e) => {
@@ -64,6 +62,19 @@ export default class ContactModal {
                 e.preventDefault()
                 this.closeModal()
                 }
+        })
+        // trap focus inside the modal
+        this.$submitButton.addEventListener("keydown", (e) => {
+            if (e.key === "Tab" && !e.shiftKey) {
+                e.preventDefault()
+                this.$closeIcon.focus()
+            }
+        })
+        this.$closeIcon.addEventListener("keydown", (e) => {
+            if (e.key === "Tab" && e.shiftKey) {
+                e.preventDefault()
+                this.$submitButton.focus()
+            }
         })
     }
 

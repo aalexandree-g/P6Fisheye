@@ -2,7 +2,7 @@
 #main {
     display: flex;
     flex-direction: column;
-    gap: 30px;
+    gap: 40px;
 }
 
 
@@ -165,7 +165,7 @@ form #submit-button {
     font-size: 20px;
     font-weight: bold;
 }
-.dropdown .buttons {
+.dropdown .options {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -213,18 +213,18 @@ form #submit-button {
 }
 .dropdown i {
     transform: rotate(0deg);
-    transition: transform 200ms ease-in-out;
+    transition: transform 150ms ease-in-out;
 }
-.dropdown .rotate {
+.dropdown.open i {
     transform: rotate(-180deg);
 }
-.dropdown .sort-btn.visible {
+.dropdown.open .dropdown-option {
     display: flex;
 }
-.dropdown .sort-btn.hidden {
+.dropdown .dropdown-option,
+.dropdown .dropdown-option.hidden {
     display: none;
 }
-
 .dropdown .sort-btn:focus-visible {
     background-color: #DB8876;
     outline: solid 1px #26ce00;
@@ -346,6 +346,7 @@ form #submit-button {
     font-size: 36px;
     font-weight: normal;
     text-align: left;
+    margin-top: 0px;
 }
 #photographer-header .contact-button:hover,
 form #submit-button:hover {

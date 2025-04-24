@@ -4,6 +4,7 @@ export default class ApiService {
         this.data = null
     }
 
+    // get data from JSON file
     async get() {
         if (this.data) {
             return this.data

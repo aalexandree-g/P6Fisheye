@@ -1,10 +1,10 @@
-import { changeClass } from "./helper.js"
-
 export default class Lightbox {
     constructor(media) {
         this._media = media
         this.$content = document.querySelector(".main-content")
         this.$lightbox = document.querySelectorAll(".lightbox, .background")
+        this.$leftArrow = document.querySelector(".left")
+        this.$rightArrow = document.querySelector(".right")
         this.$closeIcon = document.querySelector(".lightbox-close-btn")
         this.mediaSrc = this._media.map(element => element.getSrc())
     }
@@ -20,7 +20,7 @@ export default class Lightbox {
 
     closeLightbox() {
         this.$lightbox.forEach(element => {
-            changeClass(element, "hiding", "showing")
+            element.classList.replace("showing", "hiding")
             setTimeout(() => {
                 element.classList.remove("visible", "hiding")
             }, 250)
@@ -44,7 +44,9 @@ export default class Lightbox {
         this._media[this.index].createLightbox(this.mediaSrc[this.index])     
     }
 
+    // all click events
     setupClickEvents() {
+
         // open lightbox
         this._media.forEach((media, index) => {
             const $media = document.getElementById(`${media.id}`)
@@ -59,8 +61,8 @@ export default class Lightbox {
         })
 
         // change media
-        document.querySelector(".left").addEventListener("click", () => { this.showPreviousMedia() })
-        document.querySelector(".right").addEventListener("click", () => { this.showNextMedia() })
+        this.$leftArrow.addEventListener("click", () => { this.showPreviousMedia() })
+        this.$rightArrow.addEventListener("click", () => { this.showNextMedia() })
 
         // close lightbox
         document.addEventListener("click", (e) => {
@@ -71,6 +73,21 @@ export default class Lightbox {
                 this.closeLightbox()
             }
         })
+
+        // trap focus inside the lightbox
+        this.$rightArrow.addEventListener("keydown", (e) => {
+            if (e.key === "Tab" && !e.shiftKey) {
+                e.preventDefault()
+                this.$closeIcon.focus()
+            }
+        })
+        this.$closeIcon.addEventListener("keydown", (e) => {
+            if (e.key === "Tab" && e.shiftKey) {
+                e.preventDefault()
+                this.$rightArrow.focus()
+            }
+        })
+
     }
 
     setupKeydownEvents() {

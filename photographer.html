@@ -23,16 +23,11 @@
             </div>
             <div class="dropdown">
                 <span id="sort-label">Trier par</span>
-                <div class="buttons" role="listbox" aria-labelledby="sort-label">
-                    <button class="sort-btn noChoice visible" role="option" aria-selected="true" aria-haspopup="true">
-                        <span>--</span>
-                    </button>
-                    <button class="sort-btn popularity hidden" role="option" aria-selected="false">
-                        <span>Popularité</span>
-                    </button>
-                    <button class="sort-btn title hidden" role="option" aria-selected="false">
-                        <span>Titre</span>
-                    </button>
+                <div class="options" role="listbox" aria-labelledby="sort-label">
+                    <button class="sort-btn dropdown-selected" role="option" aria-selected="true" data-value="Popularité" aria-haspopup="true">Popularité</button>
+                    <button class="sort-btn dropdown-option" role="option" aria-selected="false" data-value="Popularité">Popularité</button>
+                    <button class="sort-btn dropdown-option" role="option" aria-selected="false" data-value="Date">Date</button>
+                    <button class="sort-btn dropdown-option" role="option" aria-selected="false" data-value="Titre">Titre</button>
                     <i class="fa-solid fa-chevron-down" aria-hidden="true"></i>
                 </div>
             </div>

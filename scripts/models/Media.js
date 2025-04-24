@@ -19,7 +19,7 @@ export default class Media {
 
     set likes(newLikes) { this._likes = newLikes}
 
-    get date() { return this._date }
+    get date() { return this._date.replaceAll("-", "") }
 
     get price() { return this._price }
 }

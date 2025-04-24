@@ -1,3 +1,5 @@
+import ContactModal from "../utils/ContactModal.js"
+
 export default class PhotographerTemplate {
     constructor(photographer) {
         this._photographer = photographer
@@ -42,6 +44,8 @@ export default class PhotographerTemplate {
             <button class="contact-button" aria-label="Contactez ${this._photographer.name}">Contactez-moi</button>
             <img src="./assets/photographers/${this._photographer.portrait}" alt="${this._photographer.name}">
         `.trim()
+        // add modal
+        new ContactModal(this._photographer).init()
         return $header
     }
 }

@@ -1,5 +1,4 @@
 import Media from "../models/Media.js"
-import { changeClass } from "../utils/helper.js"
 
 export default class MediaTemplate extends Media {
     constructor(media) {
@@ -7,18 +6,16 @@ export default class MediaTemplate extends Media {
         this._media = media
     }
 
+    // add or remove a like
     updateLikes() {
         const $media = document.getElementById(`${this._media.id}`)
         const $likeIcon = $media.querySelector(".like-icon")
-        if (!this._media.liked) {
-            this._media.likes += 1
-            this._media.liked = true
-            changeClass($likeIcon, "fa-solid", "fa-regular")
-        } else {
-            this._media.likes -= 1
-            this._media.liked = false
-            changeClass($likeIcon, "fa-regular", "fa-solid")
-        }
+        this._media.likes += this._media.liked ? -1 : 1
+        // one like maximum
+        this._media.liked = !this._media.liked
+        //change heart icon state
+        $likeIcon.classList.toggle("fa-solid", this._media.liked)
+        $likeIcon.classList.toggle("fa-regular", !this._media.liked)
         $media.querySelector(".media-likes").textContent = this._media.likes
     }
 
@@ -29,7 +26,7 @@ export default class MediaTemplate extends Media {
             <span class="media-title">${this._title}</span>
             <div class="likes-section" tabindex="0">
                 <span class="media-likes">${this._likes}</span>
-                <i class="fa-regular fa-heart like-icon" aria-label="likes"></i>
+                <i class="fa-heart like-icon" aria-label="likes"></i>
             </div>
         `
         $article.appendChild($mediaInfos)

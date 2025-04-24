@@ -1,7 +1,8 @@
 import MediaFactory from "../factories/MediaFactory.js"
 import PhotographerTemplate from "../templates/PhotographerTemplate.js"
 import Dropdown from "../utils/Dropdown.js"
-import { changeClass } from "../utils/helper.js"
+import PanelTemplate from "../templates/PanelTemplate.js"
+import Lightbox from "../utils/Lightbox.js"
 
 export default class PhotographerService {
     constructor(api) {
@@ -18,13 +19,16 @@ export default class PhotographerService {
         // get media
         const allMediaData = await this._api.getMedia()
         const media = allMediaData
-            .filter(media => media.photographerId === photographer.id)  // only media from photographer
-            .map(media => new MediaFactory(media))                      // split into photos and videos
+            // only media from photographer
+            .filter(media => media.photographerId === photographer.id)
+            // split into photos and videos
+            .map(media => new MediaFactory(media))
         return { photographer, media }
     }
 
     displayPhotographersCards(photographers) {
         const $section = document.getElementById("photographer-section")
+        // generate cards
         photographers.forEach(photographer => {
             const card = new PhotographerTemplate(photographer).createPhotographerCard()
             $section.appendChild(card)
@@ -32,10 +36,12 @@ export default class PhotographerService {
             const $photographer = document.getElementById(`${photographer.id}`)
             const $photographerPicture = $photographer.querySelector(".photographer-picture")
             $photographer.addEventListener("mouseenter", () => {
-                changeClass($photographerPicture, "active", "inactive")
+                $photographerPicture.classList.add("active")
+                $photographerPicture.classList.remove("inactive")
             })
             $photographer.addEventListener("mouseleave", () => {
-                changeClass($photographerPicture, "inactive", "active")
+                $photographerPicture.classList.add("inactive")
+                $photographerPicture.classList.remove("active")
             })
         })
         return $section
@@ -45,24 +51,31 @@ export default class PhotographerService {
         function displayMedia(mediaList) {
             const $section = document.getElementById("media-section")
             $section.innerHTML = ""
+            // generate media
             mediaList.forEach(media => {
                 const mediaElement = media.createMedia()
                 $section.appendChild(mediaElement)
                 // hover animations
                 const $media = document.getElementById(`${media.id}`)
                 const $mediaElement = $media.querySelector(".media-element")
+                $media.addEventListener("mouseenter", () => {
+                    $mediaElement.classList.add("active")
+                    $mediaElement.classList.remove("inactive")
+                })
+                $media.addEventListener("mouseleave", () => {
+                    $mediaElement.classList.add("inactive")
+                    $mediaElement.classList.remove("active")
+                })
+                // heart icon state
                 const $likeIcon = $media.querySelector(".like-icon")
-                if (media.liked) {
-                    changeClass($likeIcon, "fa-solid", "fa-regular")
-                } else {
-                    changeClass($likeIcon, "fa-regular", "fa-solid")
-                }
-                $media.addEventListener("mouseenter", () => { changeClass($mediaElement, "active", "inactive") })
-                $media.addEventListener("mouseleave", () => { changeClass($mediaElement, "inactive", "active") })
+                $likeIcon.classList.add(media.liked ? "fa-solid" : "fa-regular") 
             })
             $section.classList.add("showing")
         }
         displayMedia(mediaList)
+        // initialize lightbox, dropdown menu and panel
+        new Lightbox(mediaList).init()
         new Dropdown(photographer, mediaList, displayMedia).init()
+        new PanelTemplate(photographer, mediaList).init()
     }
 }

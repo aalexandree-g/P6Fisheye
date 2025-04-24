@@ -10,6 +10,7 @@ export default class PhotoTemplate extends MediaTemplate {
         return this._image
     }
 
+    // display photo in gallery
     createMedia() {
         const $photoElement = document.createElement("article")
         $photoElement.classList.add("media-card")
@@ -23,6 +24,7 @@ export default class PhotoTemplate extends MediaTemplate {
         return $photoElement
     }
 
+    // display photo in lightbox
     createLightbox(mediaSrc) {
         const $lightboxMedia = document.getElementById("lightbox-media")
         $lightboxMedia.innerHTML = `

@@ -1,14 +1,14 @@
 import MediaTemplate from "./MediaTemplate.js"
 
 export default class PanelTemplate {
-    constructor(photographer, media) {
+    constructor(photographer, mediaList) {
         this._photographer = photographer
-        this._media = media
+        this._mediaList = mediaList
     }
 
     getTotalLikes() {
         let totalLikes = 0
-        this._media.forEach(m => {
+        this._mediaList.forEach(m => {
             totalLikes += m.likes
         })
         return totalLikes
@@ -29,8 +29,9 @@ export default class PanelTemplate {
         return $panel
     }
 
+    // click on like
     setupClickEvents() {
-        this._media.forEach(media => {
+        this._mediaList.forEach(media => {
             const $media = document.getElementById(`${media.id}`)
             $media.querySelector(".likes-section").addEventListener("click", () => {
                 new MediaTemplate(media).updateLikes()
@@ -39,8 +40,9 @@ export default class PanelTemplate {
         })
     }
 
+    // press on like
     setupKeydownEvents() {
-        this._media.forEach(media => {
+        this._mediaList.forEach(media => {
             const $media = document.getElementById(`${media.id}`)
             $media.querySelector(".likes-section").addEventListener("keydown", (e) => {
                 if (e.key === "Enter" || e.key === " ") {

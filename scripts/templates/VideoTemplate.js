@@ -10,10 +10,12 @@ export default class VideoTemplate extends MediaTemplate {
         return this._video
     }
 
+    // display video in gallery
     createMedia() {
+        // prepare thumbnail
         const videoName = this._video
         const thumbnailName = videoName.replace(/\.mp4$/, ".jpg")
-
+        // display thumbnail
         const $videoElement = document.createElement("article")
         $videoElement.classList.add("media-card")
         $videoElement.id = this._id
@@ -27,6 +29,7 @@ export default class VideoTemplate extends MediaTemplate {
         return $videoElement
     }
 
+    // display video in lightbox
     createLightbox(mediaSrc) {
         const $lightboxMedia = document.getElementById("lightbox-media")
         $lightboxMedia.innerHTML = `
