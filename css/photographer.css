@@ -16,6 +16,22 @@
     height: 300px;
     padding: 0px 60px;
 }
+#photographer-header.error {
+    flex-direction: column;
+    justify-content: center;
+    gap: 15px;
+    color: #901C1C;
+}
+#photographer-header.error i {
+    font-size: 32px;
+}
+#photographer-header.error h2 {
+    margin: 0;
+}
+#photographer-header.error p {
+    margin: 0;
+    color: #707070;
+}
 #photographer-header .text-content {
     display: flex;
     flex-direction: column;

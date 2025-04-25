@@ -6,10 +6,15 @@ const api = new PhotographersApi("./data/photographers.json")
 const service = new PhotographerService(api)
 
 // get photographer and media
-const { photographer, media } = await service.getDataFromUrl()
+const result = await service.getDataFromUrl()
 
-// display photographer
-new PhotographerTemplate(photographer).createPhotographerHeader()
+// unknown id
+if (!result) {
+    console.log("L'id ne correspond à aucun photographe.")
 
-// display media
-service.displayPhotographerMedia(photographer, media)
+// display photographer and media
+} else {
+    const { photographer, media } = result
+    new PhotographerTemplate(photographer).createPhotographerHeader()
+    service.displayPhotographerMedia(photographer, media)
+}

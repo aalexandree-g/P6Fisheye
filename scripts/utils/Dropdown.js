@@ -33,37 +33,47 @@ export default class Dropdown {
         }, 500)
     }
 
-    // all click events
-    dropdownClickEvents() {
-        const dropdown = document.querySelector(".dropdown")
-        const selected = document.querySelector(".dropdown-selected")
-        const options = document.querySelectorAll(".dropdown-option")
+    // all event listeners
+    dropdownEvents() {
+        const $dropdown = document.querySelector(".dropdown")
+        const $selected = document.querySelector(".dropdown-selected")
+        const $options = document.querySelectorAll(".dropdown-option")
+        const $allBtn = document.querySelectorAll(".sort-btn")
         // make selected button a choice
-        selected.addEventListener("click", () => {
-            if (dropdown.classList.contains("open")) {
-                this.sortAndDisplay(selected.dataset.value)
+        $selected.addEventListener("click", () => {
+            if ($dropdown.classList.contains("open")) {
+                this.sortAndDisplay($selected.dataset.value)
             }
-            options.forEach(option => {
-                if (option.dataset.value === selected.textContent) {
-                    option.classList.add("hidden")
+            $options.forEach($option => {
+                if ($option.dataset.value === $selected.textContent) {
+                    $option.classList.add("hidden")
                 }
             })
-            dropdown.classList.toggle("open")
+            $dropdown.classList.toggle("open")
         })
         // make a choice from the options
-        options.forEach(option => {
-            option.addEventListener("click", (e) => {
+        $options.forEach($option => {
+            $option.addEventListener("click", (e) => {
                 const choice = e.target.dataset.value
-                selected.textContent = choice
-                selected.dataset.value = choice
-                dropdown.classList.remove("open")
-                options.forEach(opt => opt.classList.remove("hidden"))
+                $selected.textContent = choice
+                $selected.dataset.value = choice
+                $dropdown.classList.remove("open")
+                $options.forEach(opt => opt.classList.remove("hidden"))
                 this.sortAndDisplay(choice)
+            })
+        })
+        // quit menu with Escap key
+        $allBtn.forEach($btn => {
+            $btn.addEventListener("keydown", (e) => {
+                if (e.key === "Escape") {
+                    e.preventDefault()
+                    $dropdown.classList.remove("open")
+                }
             })
         })
     }
 
     init() {
-        this.dropdownClickEvents()
+        this.dropdownEvents()
     }
 }

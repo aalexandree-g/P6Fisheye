@@ -16,7 +16,18 @@ export default class PhotographerService {
         // get photographer with this id
         const photographers = await this._api.getPhotographers()
         const photographer = photographers.find(photographer => photographer.id === id)
-        // get media
+        // error if unknown id
+        if (!photographer) {
+            document.getElementById("main").innerHTML = `
+                <div id="photographer-header" class="error">
+                    <i class="fa-solid fa-triangle-exclamation"></i>
+                    <h2>Photographe introuvable</h2>
+                    <p>Vérifiez l'identifiant dans l'URL.</p>
+                </div>
+            `.trim()
+            return
+        }
+        // get media if valid id
         const allMediaData = await this._api.getMedia()
         const media = allMediaData
             // only media from photographer
